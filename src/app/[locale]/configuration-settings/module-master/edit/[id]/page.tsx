@@ -12,6 +12,9 @@ interface EditPageProps {
   params: Promise<{ id: string }>;
 }
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function EditPage({ params }: EditPageProps): Promise<React.ReactElement> {
   const { id } = await params;
   const moduleId = Number(id);

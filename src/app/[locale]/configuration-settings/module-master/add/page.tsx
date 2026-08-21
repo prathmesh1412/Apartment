@@ -3,6 +3,9 @@ import { ModuleForm } from '@/components/modules/configuration-settings/module-m
 import { getAllDepartmentMastersAction, getModuleMastersSummaryAction } from '../actions';
 import type { DepartmentMaster } from '@/types/departmentMaster.types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AddPage(): Promise<React.ReactElement> {
   const [departmentResult, existingModulesResult] = await Promise.all([
     getAllDepartmentMastersAction(),
