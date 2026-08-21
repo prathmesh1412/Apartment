@@ -1,0 +1,265 @@
+import { ApiResponse } from "@/types/common.types";
+import { appConfig } from "@/config/app.config";
+
+interface BackendApiResponse<T> {
+  success: boolean;
+  message?: string;
+  items?: T;
+  data?: T;
+}
+
+export interface AssetDocumentDefinitionDto {
+  id: number;
+  assetCategoryId: number;
+  assetTypeId: number | null;
+  documentCode: string;
+  documentName: string;
+  description: string | null;
+  isRequired: boolean;
+  maxFileSizeMB: number;
+  allowedExtensions: string;
+  displayOrder: number;
+}
+
+export interface AssetDocumentDto {
+  id: number;
+  assetId: number;
+  documentDefinitionId: number;
+  floorDetailId: number | null;
+  fileName: string;
+  storedFileName: string;
+  filePath: string;
+  fileSize: number;
+  mimeType: string;
+  fileExtension: string;
+  documentTitle: string | null;
+  documentDate: string | null;
+  documentNumber: string | null;
+  remarks: string | null;
+  isVerified: boolean;
+  verifiedBy: number | null;
+  verifiedDate: string | null;
+  verificationRemarks: string | null;
+  createdDate: string;
+  documentCode: string | null;
+  documentName: string | null;
+  documentGuid: string | null;
+  coreDocumentId: number | null;
+  documentBindingId: number | null;
+}
+
+export interface AssetDocumentUploadFormData {
+  file: File;
+  assetId: number;
+  moduleId: number;
+  documentDefinitionId: number;
+  floorDetailId?: number;
+  ownerUserId?: number;
+  uploadedByUserId?: number;
+  documentType?: string;
+  documentTitle?: string;
+  documentDate?: string;
+  documentNumber?: string;
+  remarks?: string;
+  isPrimaryDocument?: boolean;
+  bindingPurpose?: string;
+}
+
+export interface AssetDocumentUploadResponseDto {
+  assetDocumentId: number;
+  assetId: number;
+  moduleId: number;
+  documentDefinitionId: number;
+  documentGuid: string;
+  coreDocumentId: number;
+  documentBindingId: number;
+  fileName: string;
+  fileSizeBytes: number;
+  storagePath: string;
+}
+
+export interface FileMetadataItem {
+  fileName?: string;
+  documentDefinitionId: number;
+  documentType?: string;
+  documentTitle?: string;
+  documentDate?: string;
+  documentNumber?: string;
+  remarks?: string;
+  isPrimaryDocument?: boolean;
+  bindingPurpose?: string;
+}
+
+export interface AssetDocumentBulkUploadFormData {
+  files: File[];
+  assetId: number;
+  moduleId: number;
+  floorDetailId?: number;
+  ownerUserId?: number;
+  uploadedByUserId?: number;
+  fileMetadata?: FileMetadataItem[];
+  documentDefinitionId?: number;
+  documentType?: string;
+  documentTitle?: string;
+  documentDate?: string;
+  documentNumber?: string;
+  remarks?: string;
+  isPrimaryDocument?: boolean;
+  bindingPurpose?: string;
+}
+
+export interface BulkUploadFailureDto {
+  fileName: string;
+  errorMessage: string;
+}
+
+export interface AssetDocumentBulkUploadResponseDto {
+  successCount: number;
+  failureCount: number;
+  successfulUploads: AssetDocumentUploadResponseDto[];
+  failedUploads: BulkUploadFailureDto[];
+}
+
+
+const BASE_URL =
+  typeof window !== 'undefined'
+    ? (window.__RUNTIME_CONFIG__?.apiBaseUrl || appConfig.api.baseUrl)
+    : (process.env.NEXT_PUBLIC_API_BASE_URL || appConfig.api.baseUrl);
+
+async function apiRequest<T>(endpoint: string, options?: RequestInit): Promise<ApiResponse<T>> {
+  try {
+    const url = `${BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
+    const response = await fetch(url, { ...options, cache: 'no-store' });
+    const text = await response.text();
+    let data: BackendApiResponse<T> | null = null;
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch { }
+    }
+    if (!response.ok) {
+      return { success: false, message: data?.message || `${response.status}: ${response.statusText}`, statusCode: response.status };
+    }
+    return { success: true, data: data?.items ?? data?.data ?? (data as unknown as T), message: data?.message, statusCode: response.status };
+  } catch (error) {
+    return { success: false, message: error instanceof Error ? error.message : 'Network error' };
+  }
+}
+
+export interface CreateDocumentDefinitionPayload {
+  assetCategoryId: number;
+  assetTypeId?: number | null;
+  documentCode: string;
+  documentName: string;
+  description?: string | null;
+  isRequired: boolean;
+  maxFileSizeMB: number;
+  allowedExtensions: string;
+  displayOrder: number;
+  isActive?: boolean;
+  createdBy?: number | string;
+}
+
+export interface UpdateDocumentDefinitionPayload extends CreateDocumentDefinitionPayload {
+  updatedBy?: number | string;
+}
+
+export const assetDocumentService = {
+  getDefinitions: async (assetCategoryId: number, assetTypeId?: number): Promise<ApiResponse<AssetDocumentDefinitionDto[]>> => {
+    const params = new URLSearchParams();
+    params.append("assetCategoryId", assetCategoryId.toString());
+    if (assetTypeId) params.append("assetTypeId", assetTypeId.toString());
+    return apiRequest<AssetDocumentDefinitionDto[]>(`/AssetDocument/definitions?${params.toString()}`);
+  },
+
+  createDefinition: async (payload: CreateDocumentDefinitionPayload): Promise<ApiResponse<AssetDocumentDefinitionDto>> => {
+    return apiRequest<AssetDocumentDefinitionDto>('/AssetDocument/definitions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...payload, isActive: true, createdBy: payload.createdBy ?? 1 }),
+    });
+  },
+
+  updateDefinition: async (id: number, payload: UpdateDocumentDefinitionPayload): Promise<ApiResponse<AssetDocumentDefinitionDto>> => {
+    return apiRequest<AssetDocumentDefinitionDto>(`/AssetDocument/definitions/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...payload, isActive: true, updatedBy: payload.updatedBy ?? 1 }),
+    });
+  },
+
+  deleteDefinition: async (id: number): Promise<ApiResponse<void>> => {
+    return apiRequest<void>(`/AssetDocument/definitions/${id}`, { method: 'DELETE' });
+  },
+  getByAssetId: async (assetId: number, includeAdHoc: boolean = false, includeDefinitionBased: boolean = false): Promise<ApiResponse<AssetDocumentDto[]>> => {
+    let url = `/AssetDocument/by-asset/${assetId}`;
+    const params = new URLSearchParams();
+    if (includeAdHoc) params.append("includeAdHoc", "true");
+    if (includeDefinitionBased) params.append("includeDefinitionBased", "true");
+    const qs = params.toString();
+    if (qs) url += `?${qs}`;
+    return apiRequest<AssetDocumentDto[]>(url);
+  },
+  getFileByAssetId: async (assetId: number): Promise<Blob> => {
+    const response = await fetch(`${BASE_URL}/AssetDocument/by-asset/${assetId}/file`);
+    if (!response.ok) throw new Error("Failed to download document");
+    return response.blob();
+  },
+  getFileByDocumentId: async (documentId: number): Promise<Blob> => {
+    const response = await fetch(`${BASE_URL}/AssetDocument/by-asset-document/${documentId}/file`);
+    if (!response.ok) throw new Error("Failed to download document file");
+    return response.blob();
+  },
+  upload: async (data: AssetDocumentUploadFormData): Promise<ApiResponse<AssetDocumentUploadResponseDto>> => {
+    const formData = new FormData();
+    formData.append("File", data.file);
+    formData.append("AssetId", data.assetId.toString());
+    formData.append("ModuleId", (data.moduleId || 0).toString());
+    formData.append("DocumentDefinitionId", data.documentDefinitionId.toString());
+    if (data.floorDetailId) formData.append("FloorDetailId", data.floorDetailId.toString());
+    if (data.ownerUserId) formData.append("OwnerUserId", data.ownerUserId.toString());
+    formData.append("UploadedByUserId", (data.uploadedByUserId || 1).toString());
+    if (data.documentType) formData.append("DocumentType", data.documentType);
+    if (data.documentTitle) formData.append("DocumentTitle", data.documentTitle);
+    if (data.documentDate) formData.append("DocumentDate", data.documentDate);
+    if (data.documentNumber) formData.append("DocumentNumber", data.documentNumber);
+    if (data.remarks) formData.append("Remarks", data.remarks);
+    if (data.isPrimaryDocument !== undefined) formData.append("IsPrimaryDocument", data.isPrimaryDocument.toString());
+    if (data.bindingPurpose) formData.append("BindingPurpose", data.bindingPurpose);
+    return apiRequest<AssetDocumentUploadResponseDto>("/AssetDocument/upload", { method: 'POST', body: formData });
+  },
+  uploadBulk: async (data: AssetDocumentBulkUploadFormData): Promise<ApiResponse<AssetDocumentBulkUploadResponseDto>> => {
+    const formData = new FormData();
+    data.files.forEach((file) => formData.append("Files", file));
+    formData.append("AssetId", data.assetId.toString());
+    formData.append("ModuleId", (data.moduleId || 0).toString());
+    if (data.floorDetailId) formData.append("FloorDetailId", data.floorDetailId.toString());
+    if (data.ownerUserId) formData.append("OwnerUserId", data.ownerUserId.toString());
+    formData.append("UploadedByUserId", (data.uploadedByUserId || 1).toString());
+    if (data.fileMetadata && data.fileMetadata.length > 0) {
+      formData.append("FileMetadataJson", JSON.stringify(data.fileMetadata));
+    } else {
+      if (data.documentDefinitionId) formData.append("DocumentDefinitionId", data.documentDefinitionId.toString());
+      if (data.documentType) formData.append("DocumentType", data.documentType);
+      if (data.documentTitle) formData.append("DocumentTitle", data.documentTitle);
+      if (data.documentDate) formData.append("DocumentDate", data.documentDate);
+      if (data.documentNumber) formData.append("DocumentNumber", data.documentNumber);
+      if (data.remarks) formData.append("Remarks", data.remarks);
+      if (data.isPrimaryDocument !== undefined) formData.append("IsPrimaryDocument", data.isPrimaryDocument.toString());
+      if (data.bindingPurpose) formData.append("BindingPurpose", data.bindingPurpose);
+    }
+    return apiRequest<AssetDocumentBulkUploadResponseDto>("/AssetDocument/upload/bulk", { method: 'POST', body: formData });
+  },
+
+  /**
+   * Delete an uploaded document by ID
+   */
+  delete: async (id: number): Promise<ApiResponse<void>> => {
+    return apiRequest<void>(
+      `/AssetDocument/${id}`,
+      { method: 'DELETE' }
+    );
+  },
+};
+
+export default assetDocumentService;

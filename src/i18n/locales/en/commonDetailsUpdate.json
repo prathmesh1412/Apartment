@@ -1,0 +1,184 @@
+{
+  "commonDetailsUpdate": {
+    "title": "Dynamic Field Configuration & Bulk Update",
+    "subtitle": "Configure which property-tax fields can be updated, then allow users to update only those enabled fields for selected properties.",
+    "screenObjective": {
+      "title": "Screen Objective",
+      "description": "First configure updateable fields in Field Registry & Activation. Then use Update Enabled Fields to bulk update only those fields for selected properties."
+    },
+    "tabs": {
+      "updateFields": "Update Fields",
+      "fieldRegistry": "Field Registry",
+      "excelUpload": "Excel Upload",
+      "jobsAudit": "Jobs & Audit"
+    },
+    "propertyCriteria": {
+      "title": "Select Property Criteria",
+      "subtitle": "Select criteria first. Only required parameters for the selected criteria will be shown.",
+      "selectionCriteria": "PROPERTY SELECTION CRITERIA",
+      "matchedProperties": "Matched Properties",
+      "inputParameters": "Input Parameters",
+      "allPropertiesNote": "All properties under selected Zone / Node will be considered.",
+      "generalUserAllowed": "General user allowed",
+      "wardPropertyRange": "Ward / Property Range"
+    },
+    "fieldList": {
+      "title": "Select Fields to Update",
+      "subtitle": "Only active fields allowed to general users are shown below.",
+      "enabledFieldList": "Enabled Field List",
+      "available": "available",
+      "selected": "selected",
+      "noApproval": "No Approval",
+      "approval": "Approval",
+      "refreshFields": "Refresh Enabled Fields"
+    },
+    "newValues": {
+      "title": "New Values",
+      "updateReason": "Update Reason",
+      "updateReasonPlaceholder": "Enter reason for update",
+      "validationReady": "Validation Ready",
+      "fieldsSelected": "fields selected",
+      "matchedProperties": "matched properties",
+      "validationSummary": "{fields} fields selected and {properties} matched properties."
+    },
+    "menu": {
+      "title": "Choose Field to Update",
+      "searchPlaceholder": "Search update type..."
+    },
+    "filter": {
+      "title": "Property Filter",
+      "wardNumber": "Ward Number",
+      "selectWard": "Select Ward",
+      "fromPropertyNo": "From Property No",
+      "selectFromPropertyNo": "Select From Property No",
+      "toPropertyNo": "To Property No",
+      "selectToPropertyNo": "Select To Property No",
+      "wing": "Wing",
+      "selectWing": "Select wing",
+      "show": "Show",
+      "back": "Back",
+      "clear": "Clear",
+      "zoneNode": "Zone / Node",
+      "selectZoneNode": "Select Zone / Node"
+    },
+    "preview": {
+      "title": "Preview List",
+      "propertiesLoaded": "properties loaded",
+      "noProperties": "No properties found",
+      "selectFilters": "Apply filters to load properties",
+      "loading": "Loading properties...",
+      "selectAll": "Select All",
+      "property": "property",
+      "properties": "properties",
+      "selected": "selected",
+      "showing": "Showing",
+      "of": "of",
+      "entries": "entries",
+      "searchPlaceholder": "Search properties..."
+    },
+    "columns": {
+      "wardNo": "Ward No.",
+      "propertyNo": "Property No.",
+      "partitionNo": "Partition No.",
+      "currentValueEn": "Current Value (English)",
+      "currentValueMr": "Current Value (Marathi)",
+      "currentValuePrefix": "Current"
+    },
+    "form": {
+      "title": "Bulk Update Form",
+      "update": "Update",
+      "clear": "Clear",
+      "updating": "Updating...",
+      "selectMenuPrompt": "Select a field to update from the left panel",
+      "noFields": "No fields configured for this update type"
+    },
+    "fieldRegistry": {
+      "title": "Authorized User Workflow",
+      "subtitle": "Use this section to decide which fields are updateable, who can update them, and whether approval is required.",
+      "authenticatedUserOnly": "Authenticated user only",
+      "addFieldFromDb": {
+        "title": "Add Field from Database",
+        "subtitle": "Authenticated user can add a database field into the registry, define user-facing name and then activate it.",
+        "sourceModule": "Source Module",
+        "sourceTable": "Source Table",
+        "databaseColumn": "Database Column",
+        "userFacingName": "User-facing Field Name",
+        "fieldType": "Field Type",
+        "validationRule": "Validation Rule",
+        "allowGeneralUserUpdate": "Allow General User Update",
+        "approvalRequired": "Approval Required",
+        "addToRegistry": "Add Field to Registry",
+        "addFromDb": "Add Field from DB",
+        "preview": "Preview"
+      },
+      "filters": {
+        "category": "Category",
+        "status": "Status",
+        "searchPlaceholder": "Search field / database name",
+        "allCategories": "All Categories",
+        "active": "Active",
+        "inactive": "Inactive",
+        "all": "All"
+      },
+      "stats": {
+        "totalEligible": "Total Eligible Fields",
+        "activeFields": "Active Fields",
+        "generalUserAllowed": "General User Allowed",
+        "approvalRequired": "Approval Required"
+      },
+      "table": {
+        "fieldName": "Field Name",
+        "active": "Active"
+      },
+      "emptyState": {
+        "title": "No fields registered yet",
+        "description": "Use the form above to add fields from the database"
+      }
+    },
+    "buttons": {
+      "import": "Import",
+      "export": "Export"
+    },
+    "messages": {
+      "fetchMenuFailed": "Failed to load update options",
+      "fetchFieldConfigFailed": "Failed to load field configuration",
+      "fetchPropertiesFailed": "Failed to load properties",
+      "fetchWardsFailed": "Failed to load wards",
+      "fetchWingsFailed": "Failed to load wings",
+      "wardRequired": "Ward is required",
+      "fromPropertyRequired": "From Property No. is required",
+      "toPropertyRequired": "To Property No. is required",
+      "wingRequired": "Wing is required",
+      "updateCodeRequired": "Update type is required",
+      "propertiesRequired": "Please select at least one property",
+      "updateSuccess": "Properties updated successfully",
+      "updateFailed": "Failed to update properties",
+      "selectProperties": "Please select at least one property to update",
+      "selectUpdateType": "Please select an update type",
+      "fillRequired": "Please fill all required fields",
+      "invalidRange": "From Property No. must be less than or equal to To Property No.",
+      "noPropertiesToExport": "No properties to export",
+      "exportSuccess": "Exported successfully",
+      "somethingWrong": "Something went wrong. Please try again.",
+      "configLoadFailed": "Failed to load configuration",
+      "propertiesLoaded": "{count} properties loaded successfully",
+      "partialUpdate": "{success} properties updated, {failed} failed",
+      "noPropertiesFound": "No properties found for the selected filters"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "loading": {
+      "message": "Loading...",
+      "description": "Please wait while we load the data"
+    },
+    "error": {
+      "title": "Failed to connect to the server. Please try again later.",
+      "description": "We encountered an error while loading the common details update page. Please try again.",
+      "errorId": "Error ID: {id}",
+      "goHome": "Go to Home",
+      "tryAgain": "Try Again"
+    }
+  }
+}

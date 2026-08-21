@@ -1,0 +1,256 @@
+{
+  
+  "floor": {
+    "loading": {
+      "message": "मजला डेटा लोड होत आहे...",
+      "description": "कृपया प्रतीक्षा करा आम्ही मजला माहिती लोड करत आहोत"
+    },
+    "error": {
+      "title": "मजला डेटा लोड करण्यात अयशस्वी",
+      "description": "मजला माहिती लोड करताना त्रुटी आली. कृपया पुन्हा प्रयत्न करा.",
+      "errorId": "त्रुटी आयडी: {id}",
+      "goHome": "मुख्यपृष्ठावर जा",
+      "tryAgain": "पुन्हा प्रयत्न करा"
+    },
+    "floor": "मजला",
+    "title": "मजला मास्टर व्यवस्थापन",
+    "delete": {
+      "confirmTitle": "मजला हटवा",
+      "confirmDescription": "आपण हा मजला हटवू इच्छिता? ही क्रिया पूर्ववत करता येणार नाही."
+    },
+    "subtitle": "मजला माहिती जोडा, संपादित करा आणि व्यवस्थापित करा",
+    "tableTitle": "मजला यादी",
+    "search": {
+      "placeholder": "कोड किंवा वर्णनाने शोधा..."
+    },
+    "buttons": {
+      "add": "मजला जोडा"
+    },
+    "tabs": {
+      "floor": "मजला",
+      "subfloor": "उप-मजला"
+    },
+    "form": {
+      "title": "मजला तपशील",
+      "addTitle": "नवीन मजला जोडा",
+      "addSubtitle": "नवीन मजला नोंद तयार करा",
+      "editTitle": "मजला संपादित करा",
+      "editSubtitle": "मजला माहिती अपडेट करा",
+      "entryMode": "मजला तयार करण्याचा मोड निवडा",
+      "singleFloor": "एकल मजला",
+      "floorRange": "मजला श्रेणी",
+      "floorCode": "मजला कोड",
+      "floorCodePlaceholder": "उदा., GF, 1F, 2F",
+      "floorCodePattern": "फक्त अक्षरे, संख्या, /, _, - मजला कोडसाठी परवानगी आहे",
+      "floorName": "मजलाचे नाव",
+      "floorNamePlaceholder": "उदा., तळमजला, पहिला मजला, तळघर",
+      "floorNameEnglish": "मजलाचे नाव (इंग्रजी)",
+      "floorNameEnglishPlaceholder": "इंग्रजीमध्ये मजलाचे नाव प्रविष्ट करा",
+      "regionalName": "प्रादेशिक नाव",
+      "regionalNamePlaceholder": "प्रादेशिक भाषेत मजलाचे नाव प्रविष्ट करा",
+      "floorNumber": "मजला क्रमांक",
+      "floorNumberPlaceholder": "उदा., 0, 1, 2, -1",
+      "sequenceNo": "क्रम क्रमांक",
+      "sequenceNoPlaceholder": "क्रम क्रमांक प्रविष्ट करा",
+      "description": "वर्णन",
+      "descriptionPlaceholder": "मजला वर्णन किंवा अतिरिक्त तपशील प्रविष्ट करा",
+      "searchPlaceholder": "आयडी किंवा मजला नावाने शोधा...",
+      "status": "स्थिती",
+      "isActive": "सक्रिय",
+      "activeStatusTitle": "मजला स्थिती",
+      "activeStatusOn": "हा मजला सध्या सक्रिय आहे",
+      "activeStatusOff": "हा मजला सध्या निष्क्रिय आहे",
+      "range": {
+        "title": "मजला श्रेणी",
+        "start": "सुरू",
+        "end": "शेवट",
+        "startPlaceholder": "1",
+        "endPlaceholder": "10"
+      },
+      "englishName": {
+        "title": "इंग्रजी नाव",
+        "prefix": "पूर्वसर्ग",
+        "prefixPlaceholder": "FL",
+        "suffix": "प्रत्यय",
+        "suffixPlaceholder": "FL"
+      },
+      "regionalNameSection": {
+        "title": "प्रादेशिक नाव",
+        "prefix": "पूर्वसर्ग",
+        "prefixPlaceholder": "FL",
+        "suffix": "प्रत्यय",
+        "suffixPlaceholder": "FL"
+      },
+      "autoGenerateSubFloor": "उप-मजला स्वयंचलितपणे तयार करा",
+      "autoGenerateSubFloorDesc": "श्रेणीत प्रत्येक मजल्यासाठी एक उप-मजला तयार करतो",
+      "rangeExample": "उदाहरण: श्रेणी 1-5 तयार करते 1F, 2F, 3F, 4F, 5F",
+      "validation": {
+        "codeRequired": "कोड आवश्यक आहे",
+        "codeFormat": "कोडमध्ये फक्त अक्षरे, संख्या आणि अंडरस्कोर असू शकतात (सुरुवात/शेवटी नाही)",
+        "codeMaxLength": "कोड {count} वर्णांपेक्षा जास्त असू शकत नाही",
+        "descriptionRequired": "वर्णन आवश्यक आहे",
+        "descriptionFormat": "वर्णनात अवैध वर्ण किंवा स्वरूपन आहे",
+        "descriptionMaxLength": "वर्णन {count} वर्णांपेक्षा जास्त असू शकत नाही",
+        "sequenceNoRequired": "अनुक्रम क्रमांक आवश्यक आहे",
+        "mustBeActive": "नवीन मजला सक्रिय असणे आवश्यक आहे",
+        "rangeStartRequired": "सुरू मूल्य आवश्यक आहे",
+        "rangeEndRequired": "शेवट मूल्य आवश्यक आहे",
+        "rangeStartMinValue": "सुरू मूल्य किमान 1 असावे",
+        "rangeEndMinValue": "शेवट मूल्य किमान 1 असावे",
+        "rangeStartLessThanEnd": "सुरू शेवटपेक्षा कमी किंवा समान असावे",
+        "rangeMaxValue": "मूल्य {count} पेक्षा जास्त असू शकत नाही"
+      }
+    },
+    "table": {
+      "columns": {
+        "srNo": "अ. क्र.",
+        "floorCode": "मजला संकेतांक",
+        "floorName": "मजलाचे नाव",
+        "descriptionEnglish": "मजलाचे नाव (इंग्रजी)",
+        "descriptionRegional": "प्रादेशिक नाव",
+        "floorNumber": "मजला क्रमांक",
+        "description": "वर्णन",
+        "sequenceNo": "क्रम क्रमांक",
+        "status": "स्थिती",
+        "actions": "क्रिया"
+      },
+      "pagination": {
+        "showing": "दाखवत आहे",
+        "entries": "{total} प्रविष्ट्यांपैकी"
+      }
+    },
+    "messages": {
+      "createRangeSuccess": "{count} मजले यशस्वीरित्या तयार केले गेले",
+      "addSuccess": "मजला यशस्वीरित्या जोडला गेला",
+      "createSuccess": "मजला यशस्वीरित्या तयार केला गेला",
+      "updateSuccess": "मजला यशस्वीरित्या अपडेट केला गेला",
+      "deleteSuccess": "मजला यशस्वीरित्या हटवला गेला",
+      "deleteFailed": "मजला हटवण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+      "deleteInUse": "हा मजला वापरात असल्यामुळे तुम्ही तो हटवू शकत नाही.",
+      "deleteConfirm": "तुम्हाला खात्री आहे की तुम्ही हा मजला हटवू इच्छिता?",
+      "noFloors": "कोणतेही मजले उपलब्ध नाहीत. सुरू करण्यासाठी नवीन मजला जोडा.",
+      "validFloorIdRequired": "वैध मजला आयडी आवश्यक आहे"
+    },
+    "validation": {
+      "floorIdPattern": "फक्त अक्षरे, संख्या, /, _, - याची परवानगी आहे",
+      "duplicateFloorCode": "मजला संकेतांक आधीपासूनच अस्तित्वात आहे",
+      "maxFloorGteSequence": "कमाल मजला >= क्रम क्रमांक असायला पाहिजे",
+      "duplicateSequenceNo": "या मजल्याचा क्रमांक आधीपासूनच अस्तित्वात आहे",
+      "mustBeNumber": "वैध संख्या असणे आवश्यक आहे",
+      "required": "हे फील्ड आवश्यक आहे"
+    },
+    "apiErrors": {
+      "duplicateRecord": "रेकॉर्ड आधीच अस्तित्वात आहे",
+      "invalidData": "अवैध डेटा प्रदान केला आहे",
+      "notFound": "रेकॉर्ड सापडला नाही",
+      "operationFailed": "ऑपरेशन अयशस्वी"
+    },
+    "note": {
+      "mandatory": "* चिन्हांकित फील्ड अनिवार्य आहेत"
+    }
+  },
+  "subfloor": {
+    "loading": {
+      "message": "उप-मजला डेटा लोड होत आहे...",
+      "description": "कृपया प्रतीक्षा करा आम्ही उप-मजला माहिती लोड करत आहोत"
+    },
+    "error": {
+      "title": "उप-मजला डेटा लोड करण्यात अयशस्वी",
+      "description": "उप-मजला माहिती लोड करताना त्रुटी आली. कृपया पुन्हा प्रयत्न करा.",
+      "errorId": "त्रुटी आयडी: {id}",
+      "goHome": "मुख्यपृष्ठावर जा",
+      "tryAgain": "पुन्हा प्रयत्न करा"
+    },
+    "delete": {
+      "confirmTitle": "उप-मजला हटवा",
+      "confirmDescription": "तुम्हाला हा उप-मजला हटवायचा आहे का? ही क्रिया पूर्ववत करता येणार नाही."
+    },
+    "title": "उप-मजला मास्टर व्यवस्थापन",
+    "subtitle": "उप-मजला श्रेणी जोडा, संपादित करा आणि व्यवस्थापित करा",
+    "tableTitle": "उप-मजला यादी",
+    "search": {
+      "placeholder": "कोड किंवा वर्णनाने शोधा..."
+    },
+    "buttons": {
+      "add": "उप-मजला जोडा"
+    },
+    "tabs": {
+      "floor": "मजला",
+      "subfloor": "उप-मजला"
+    },
+    "form": {
+      "title": "उप-मजला तपशील",
+      "addTitle": "उप-मजला जोडा",
+      "addSubtitle": "नवीन उप-मजला तयार करा",
+      "editTitle": "उप-मजला संपादित करा",
+      "editSubtitle": "उप-मजला तपशील अपडेट करा",
+      "subFloorId": "उप-मजला आयडी",
+      "subFloorIdPlaceholder": "उदा., SF01, SF02",
+      "descriptionEnglish": "वर्णन (इंग्रजी)",
+      "descriptionEnglishPlaceholder": "इंग्रजीमध्ये वर्णन प्रविष्ट करा",
+      "descriptionRegional": "वर्णन (प्रादेशिक)",
+      "descriptionRegionalPlaceholder": "प्रादेशिक भाषेत वर्णन प्रविष्ट करा",
+      "searchPlaceholder": "आयडी किंवा वर्णनाने शोधा...",
+      "activeStatusTitle": "सक्रिय स्थिती",
+      "activeStatusOn": "सध्या सक्षम आहे",
+      "activeStatusOff": "सध्या अक्षम आहे",
+      "code": "उप-मजला संकेतांक",
+      "codePlaceholder": "उदा., SF01, SF02",
+      "description": "वर्णन",
+      "descriptionPlaceholder": "उप-मजला वर्णन या अतिरिक्त माहिती प्रविष्ट करा",
+      "validation": {
+        "codeRequired": "संकेतांक आवश्यक आहे",
+        "codeFormat": "संकेतांकमध्ये फक्त अक्षरे, संख्या आणि अंडरस्कोर असू शकतात (सुरुवात/शेवटी नाही)",
+        "codeMaxLength": "संकेतांक {count} वर्णांपेक्षा जास्त असू शकत नाही",
+        "descriptionRequired": "वर्णन आवश्यक आहे",
+        "descriptionFormat": "वर्णनात अवैध वर्ण किंवा स्वरूपन आहे",
+        "descriptionMaxLength": "वर्णन {count} वर्णांपेक्षा जास्त असू शकत नाही",
+        "mustBeActive": "नवीन उप-मजला सक्रिय असणे आवश्यक आहे"
+      }
+    },
+    "table": {
+      "columns": {
+        "srNo": "अ. क्र.",
+        "subFloorId": "उप-मजला आयडी",
+        "descriptionEnglish": "वर्णन (इंग्रजी)",
+        "descriptionRegional": "वर्णन",
+        "status": "स्थिती",
+        "actions": "क्रिया",
+        "subFloorCode": "उप-मजला संकेतांक",
+        "subFloorDescription": "वर्णन"
+      },
+      "pagination": {
+        "showing": "दाखवत आहे",
+        "entries": "{total} प्रविष्ट्यांपैकी"
+      }
+    },
+    "messages": {
+      "addSuccess": "उप-मजला यशस्वीरित्या जोडला गेला",
+      "createSuccess": "उप-मजला यशस्वीरित्या तयार केला गेला",
+      "updateSuccess": "उप-मजला यशस्वीरित्या अपडेट केला गेला",
+      "deleteSuccess": "उप-मजला यशस्वीरित्या हटवला गेला",
+      "deleteFailed": "उप-मजला हटवण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+      "deleteInUse": "हा उप-मजला वापरात असल्यामुळे तुम्ही तो हटवू शकत नाही.",
+      "deleteConfirm": "तुम्हाला खात्री आहे की तुम्ही हा उप-मजला हटवू इच्छिता?",
+      "noSubFloors": "कोणतेही उप-मजला उपलब्ध नाहीत. सुरू करण्यासाठी नवीन उप-मजला जोडा.",
+      "validSubFloorIdRequired": "वैध उप-मजला आयडी आवश्यक आहे"
+    },
+    "validation": {
+      "subFloorIdPattern": "फक्त अक्षरे, संख्या, /, _, - याची परवानगी आहे",
+      "duplicateSubFloorId": "डुप्लिकेट उप-मजला आयडीची परवानगी नाही",
+      "maxChars": "जास्तीत जास्त {count} अक्षरे अनुमत आहेत",
+      "mustBeNumber": "कृपया वैध संख्या टाका",
+      "duplicateCode": "उप-मजला संकेतांक आधीपासूनच अस्तित्वात आहे",
+      "required": "हे फील्ड आवश्यक आहे"
+    },
+    "apiErrors": {
+      "duplicateRecord": "नोंद आधीच अस्तित्वात आहे",
+      "invalidData": "अवैध डेटा प्रदान केला आहे",
+      "notFound": "नोंद सापडली नाही",
+      "operationFailed": "ऑपरेशन अयशस्वी"
+    },
+    "note": {
+      "mandatory": "* चिन्हांकित फील्ड अनिवार्य आहेत"
+    }
+  }
+}
