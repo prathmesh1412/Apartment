@@ -36,8 +36,8 @@ const nextConfig: NextConfig = {
     },
   },
 
-  // Production standalone build
-  output: process.env.NODE_ENV === "production" ? "standalone" : undefined,
+  // Production standalone build (do not use standalone on Vercel as Vercel manages its own build tracing)
+  output: process.env.VERCEL ? undefined : (process.env.NODE_ENV === "production" ? "standalone" : undefined),
 
   outputFileTracingIncludes: {
     "/*": ["./src/i18n/locales/**/*"],
