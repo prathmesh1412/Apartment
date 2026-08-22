@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { sanitizeInput, sanitizeDescription, MAX_SANITIZED_INPUT_LENGTH } from '@/lib/utils/security';
 
 /**

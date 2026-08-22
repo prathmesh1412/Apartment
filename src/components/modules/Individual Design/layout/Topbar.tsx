@@ -221,7 +221,7 @@ export default function Topbar({ activeValuationModel, setActiveValuationModel, 
         <div className="flex items-center justify-between lg:justify-end gap-4 lg:gap-6 w-full lg:w-auto">
 
           {/* Search Bar & Filter - Enlarged for better visibility */}
-          <div className="flex-grow lg:flex-grow-0 max-w-md lg:max-w-[380px] xl:max-w-[480px] flex items-center gap-2 relative">
+          {/* <div className="flex-grow lg:flex-grow-0 max-w-md lg:max-w-[380px] xl:max-w-[480px] flex items-center gap-2 relative">
             <div className="relative flex items-center flex-1 bg-white rounded-md text-gray-800 overflow-hidden shadow-inner border border-gray-200">
               <input
                 type="text"
@@ -233,7 +233,6 @@ export default function Topbar({ activeValuationModel, setActiveValuationModel, 
               </div>
             </div>
 
-            {/* Filter Toggle Button */}
             <div className="relative">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -252,7 +251,6 @@ export default function Topbar({ activeValuationModel, setActiveValuationModel, 
                 )}
               </button>
 
-              {/* Search Filter Dropdown Panel */}
               {isFilterOpen && (
                 <SearchFilterDropdown
                   tempFilters={tempFilters}
@@ -262,7 +260,7 @@ export default function Topbar({ activeValuationModel, setActiveValuationModel, 
                 />
               )}
             </div>
-          </div>
+          </div> */}
 
           {/* Right Side Icons */}
           <div className="flex items-center gap-4 relative shrink-0">

@@ -37,6 +37,7 @@ import {
   Activity,
   FileCheck,
   Building2,
+  Bot,
 } from 'lucide-react';
 
 export interface IconProps {
@@ -84,11 +85,14 @@ export const ICON_MAP: Record<string, React.ComponentType<IconProps>> = {
   Activity,
   FileCheck,
   Building2,
+  Bot,
   save: Save,
   printer: Printer,
   plus: Plus,
   calculator: Calculator,
   search: Search,
+  bot: Bot,
+  ai: Bot,
 };
 
 /**

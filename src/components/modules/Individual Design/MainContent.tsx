@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import TopPropertySearchBar from '@/components/modules/Individual Design/layout/TopPropertySearchBar';
 import PropertySummary from '@/components/modules/Individual Design/property-details/PropertySummary';
 import ActionViews from '@/components/modules/Individual Design/layout/ActionViews';
 import { initialComplianceIssues, ComplianceIssue } from '@/components/modules/Individual Design/shared/aiReportData';
@@ -111,6 +112,7 @@ export default function MainContent({
 
   return (
     <div ref={containerRef} className="dashboard-content flex-1 h-full overflow-hidden bg-transparent p-0 font-sans text-gray-800 relative z-10 flex flex-col gap-2">
+      <TopPropertySearchBar />
       <PropertySummary 
         activeTab={activeTab} 
         onHoverImg={(url, pos) => {

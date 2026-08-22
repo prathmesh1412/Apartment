@@ -18,7 +18,8 @@ import {
   FileText,
   Plus,
   Activity,
-  ChevronDown
+  ChevronDown,
+  Sparkles
 } from 'lucide-react';
 
 interface FooterActionBarProps {
@@ -97,6 +98,16 @@ export default function FooterActionBar({ activeAction, setActiveAction }: Foote
         <button className="flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-[#1e40af] to-[#1d4ed8] text-white font-black text-xs rounded-lg hover:brightness-110 shadow-sm transition-all cursor-pointer uppercase tracking-wider shrink-0">
           <RefreshCw size={14} className="animate-spin-slow" />
           <span>Refresh Taxes</span>
+        </button>
+
+        {/* AI Inspector Button */}
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent('toggle-ai-validation-panel'))}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gradient-to-r from-indigo-600 to-blue-700 hover:from-indigo-700 hover:to-blue-800 text-white font-black text-xs rounded-lg shadow-sm transition-all cursor-pointer uppercase tracking-wider shrink-0"
+          title="Toggle AI Inspector & Validation"
+        >
+          <Sparkles size={14} className="text-amber-300 animate-pulse" />
+          <span>AI</span>
         </button>
 
         <button className="w-8.5 h-8.5 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-slate-50 text-[#002fbe] transition-colors cursor-pointer" title="Edit Record">

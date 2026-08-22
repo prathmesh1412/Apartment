@@ -9,6 +9,7 @@ import { FooterPagination } from './FooterPagination';
 import { UtilityActions, RightActions } from './FooterActionButtons';
 import { useFooterActions } from '@/hooks/layout/useFooterActions';
 import type { PropertyListItem } from '@/types/ptis.types';
+import { Bot } from 'lucide-react';
 
 interface BottomActionBarProps {
   actions?: FooterAction[];
@@ -96,7 +97,7 @@ export function BottomActionBar({
       const appartmentTab = searchParams.get('appartmentTab') || undefined;
       const subTab = searchParams.get('subTab') || undefined;
       const showDetails = searchParams.get('showDetails') || undefined;
-      
+
       const rateableExpand = searchParams.getAll('rateableExpand');
       const capitalExpand = searchParams.getAll('capitalExpand');
       const dualExpand = searchParams.getAll('dualExpand');
@@ -184,6 +185,16 @@ export function BottomActionBar({
               </svg>
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full animate-ping" />
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full" />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('toggle-ai-validation-panel'))}
+              title="AI Assistant & Inspector"
+              className="h-8 sm:h-9 px-2.5 rounded-lg border border-indigo-300 bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 hover:from-indigo-700 hover:to-blue-700 text-white flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0"
+            >
+              <Bot size={16} className="text-amber-300 animate-pulse shrink-0" />
+              <span className="font-extrabold text-[10px] tracking-wider uppercase hidden sm:inline-block">AI</span>
             </button>
 
             <RightActions

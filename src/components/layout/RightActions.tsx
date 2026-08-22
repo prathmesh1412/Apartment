@@ -42,27 +42,27 @@ export function RightActions({
 
         const buttonClasses = cn(
           'text-[10px] h-8 sm:h-9 cursor-pointer rounded-lg transition-all duration-300 active:scale-95 shrink-0 flex flex-row items-center justify-center font-bold px-3 sm:px-4 whitespace-nowrap shadow-sm border border-slate-200 bg-white/95 text-slate-700',
-          
+
           variant === 'primary' || variant === 'blue'
             ? 'bg-gradient-to-r from-blue-700 to-indigo-900 text-white! border-transparent! hover:from-blue-800 hover:to-indigo-950 hover:shadow-[0_4px_12px_rgba(30,58,138,0.25)] hover:scale-[1.02]'
             : variant === 'danger'
-            ? 'bg-gradient-to-r from-red-600 to-rose-700 text-white! border-transparent! hover:from-red-700 hover:to-rose-800 hover:shadow-[0_4px_12px_rgba(220,38,38,0.25)] hover:scale-[1.02]'
-            : variant === 'success'
-            ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white! border-transparent! hover:from-emerald-700 hover:to-teal-800 hover:shadow-[0_4px_12px_rgba(16,185,129,0.25)] hover:scale-[1.02]'
-            : variant === 'ghost'
-            ? 'bg-transparent text-slate-600 border-transparent hover:bg-slate-100'
-            : 'hover:border-blue-400/60 hover:bg-blue-50/20 hover:shadow-[0_4px_12px_rgba(59,130,246,0.08)] hover:scale-[1.02]'
+              ? 'bg-gradient-to-r from-red-600 to-rose-700 text-white! border-transparent! hover:from-red-700 hover:to-rose-800 hover:shadow-[0_4px_12px_rgba(220,38,38,0.25)] hover:scale-[1.02]'
+              : variant === 'success'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white! border-transparent! hover:from-emerald-700 hover:to-teal-800 hover:shadow-[0_4px_12px_rgba(16,185,129,0.25)] hover:scale-[1.02]'
+                : variant === 'ghost'
+                  ? 'bg-transparent text-slate-600 border-transparent hover:bg-slate-100'
+                  : 'hover:border-blue-400/60 hover:bg-blue-50/20 hover:shadow-[0_4px_12px_rgba(59,130,246,0.08)] hover:scale-[1.02]'
         );
 
         const iconClasses = cn(
           'shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5',
-          
+
           (variant === 'primary' || variant === 'blue' || variant === 'success' || variant === 'danger')
             ? 'text-white!'
             : (
               actionCommand.includes('DELETE') ? 'text-red-500!' :
-              actionCommand.includes('SAVE') || actionCommand.includes('SUBMIT') || actionCommand.includes('APPLY') ? 'text-emerald-500!' :
-              'text-[#1e3a8a]!'
+                actionCommand.includes('SAVE') || actionCommand.includes('SUBMIT') || actionCommand.includes('APPLY') ? 'text-emerald-500!' :
+                  'text-[#1e3a8a]!'
             )
         );
 
