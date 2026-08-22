@@ -3,11 +3,8 @@ import {
   Home, 
   Briefcase, 
   ShieldCheck, 
-  Trash2, 
-  Star, 
-  Percent, 
-  FileText, 
-  TrendingUp 
+  TrendingUp,
+  Building2
 } from 'lucide-react';
 import { WingDetails } from '@/components/modules/Apartment_design/shared/mockData';
 
@@ -26,206 +23,234 @@ export default function WingCard({
   onDeleteClick,
   onClick
 }: WingCardProps) {
-  const getSubMetricIconColor = (type: 'discount' | 'exemptions' | 'rvImpact') => {
-    if (activeMetric === type) {
-      if (type === 'discount' || type === 'rvImpact') return 'text-green-600';
-      return 'text-purple-600';
+  // Circle badge color
+  const getBadgeBg = (id: string) => {
+    switch (id) {
+      case 'A': return 'bg-emerald-600';
+      case 'B': return 'bg-purple-600';
+      case 'C': return 'bg-emerald-600';
+      case 'D': return 'bg-orange-600';
+      default: return 'bg-blue-600';
     }
-    if (wing.themeColor === 'purple') return 'text-purple-500';
-    if (wing.themeColor === 'orange') return 'text-orange-500';
-    if (type === 'discount' || type === 'rvImpact') return 'text-green-500';
-    return 'text-blue-500';
   };
 
-  const cardBorderAndShadow = () => {
-    return 'border border-gray-200 hover:border-gray-400 hover:shadow-gray-100/50';
+  const getRating = (id: string) => {
+    switch (id) {
+      case 'A': return '4.8';
+      case 'B': return '4.5';
+      case 'C': return '4.7';
+      case 'D': return '4.9';
+      default: return '4.5';
+    }
   };
+
+  const getAreaFt = (id: string) => {
+    switch (id) {
+      case 'A': return '12,450';
+      case 'B': return '11,520';
+      case 'C': return '9,850';
+      case 'D': return '8,400';
+      default: return '10,000';
+    }
+  };
+
+  const getSelectedPct = (id: string) => {
+    switch (id) {
+      case 'A': return '34%';
+      case 'B': return '31%';
+      case 'C': return '44%';
+      case 'D': return '28%';
+      default: return '30%';
+    }
+  };
+
+  // Row breakdown data matching screenshot design
+  const rowData = [
+    {
+      type: 'Residential',
+      icon: <Home size={11} className="text-blue-500 shrink-0" />,
+      units: wing.res || '16',
+      area: wing.id === 'A' ? '8,420' : wing.id === 'B' ? '8,010' : wing.id === 'C' ? '6,420' : '5,800',
+      cub: wing.id === 'A' ? '₹48k' : wing.id === 'B' ? '₹50.4k' : wing.id === 'C' ? '₹41.1k' : '₹38k',
+      cur: wing.id === 'A' ? '₹25.8k' : wing.id === 'B' ? '₹23.8k' : wing.id === 'C' ? '₹27.7k' : '₹22k',
+      retro: wing.id === 'A' ? '₹41.4k' : wing.id === 'B' ? '₹41.4k' : wing.id === 'C' ? '₹31k' : '₹28k',
+      total: wing.id === 'A' ? '₹67.2k' : wing.id === 'B' ? '₹71.2k' : wing.id === 'C' ? '₹58.7k' : '₹50k',
+      deltaRev: wing.id === 'A' ? '+₹20.8k' : wing.id === 'B' ? '+₹20.8k' : wing.id === 'C' ? '+₹17.6k' : '+₹14.2k',
+    },
+    {
+      type: 'Commercial',
+      icon: <Briefcase size={11} className="text-amber-500 shrink-0" />,
+      units: wing.com || '2',
+      area: wing.id === 'A' ? '3,120' : wing.id === 'B' ? '3,120' : wing.id === 'C' ? '2,820' : '2,100',
+      cub: wing.id === 'A' ? '₹25.1k' : wing.id === 'B' ? '₹25.1k' : wing.id === 'C' ? '₹23.9k' : '₹18k',
+      cur: wing.id === 'A' ? '₹11.7k' : wing.id === 'B' ? '₹11.7k' : wing.id === 'C' ? '₹13.6k' : '₹9k',
+      retro: wing.id === 'A' ? '₹22.9k' : wing.id === 'B' ? '₹22.9k' : wing.id === 'C' ? '₹16k' : '₹12k',
+      total: wing.id === 'A' ? '₹34.6k' : wing.id === 'B' ? '₹34.6k' : wing.id === 'C' ? '₹29.6k' : '₹21k',
+      deltaRev: wing.id === 'A' ? '+₹9.9k' : wing.id === 'B' ? '+₹9.9k' : wing.id === 'C' ? '+₹5.7k' : '+₹4.1k',
+    },
+    {
+      type: 'Amenity',
+      icon: <ShieldCheck size={11} className="text-purple-500 shrink-0" />,
+      units: wing.amen || '1',
+      area: wing.id === 'A' ? '790' : wing.id === 'B' ? '790' : wing.id === 'C' ? '600' : '500',
+      cub: wing.id === 'A' ? '₹6.8k' : wing.id === 'B' ? '₹6.8k' : wing.id === 'C' ? '₹5.6k' : '₹4k',
+      cur: wing.id === 'A' ? '₹2.1k' : wing.id === 'B' ? '₹2.1k' : wing.id === 'C' ? '₹2.8k' : '₹1.8k',
+      retro: wing.id === 'A' ? '₹4.8k' : wing.id === 'B' ? '₹4.8k' : wing.id === 'C' ? '₹3.2k' : '₹2.5k',
+      total: wing.id === 'A' ? '₹7k' : wing.id === 'B' ? '₹7k' : wing.id === 'C' ? '₹6k' : '₹4.3k',
+      deltaRev: wing.id === 'A' ? '+₹0.2k' : wing.id === 'B' ? '+₹0.2k' : wing.id === 'C' ? '+₹0.3k' : '+₹0.1k',
+    }
+  ];
 
   return (
     <div 
       onClick={onClick}
-      className={`bg-white rounded-xl p-1.5 shadow-xs hover:shadow-md transition-all relative flex flex-col justify-between h-full min-h-[135px] cursor-pointer ${cardBorderAndShadow()}`}
+      className="bg-white border border-blue-900/20 hover:border-blue-900/40 rounded-2xl shadow-xs hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between h-full cursor-pointer select-none"
     >
-      {/* local SVG gradient definition for half star */}
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <linearGradient id="star-half-amber-wing" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="50%" stopColor="#f59e0b" />
-            <stop offset="50%" stopColor="#e5e7eb" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      {/* Top row */}
-      <div className="flex items-center justify-between pb-0.5 gap-1">
-        <div className="flex items-center gap-1 shrink-0">
-          <div className={`w-5 h-5 rounded flex items-center justify-center font-extrabold text-[8.5px] text-white ${wing.badgeBgColor}`}>
-            {wing.wing[0]}
+      {/* 1. DARK BLUE HEADER BAR */}
+      <div className="bg-[#0b193c] text-white px-3 py-2 flex items-center justify-between gap-2 shrink-0">
+        {/* Left: Badge + Wing Name + Rating */}
+        <div className="flex items-center gap-2">
+          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white font-black text-[11px] shrink-0 ${getBadgeBg(wing.id)}`}>
+            {wing.id}
           </div>
           <div>
-            <span className="text-[11.5px] font-black text-gray-800 block leading-tight">{wing.wing}</span>
-            <span className="text-[8.5px] text-red-600 font-bold block leading-tight">{wing.name}</span>
-          </div>
-        </div>
-
-        {/* Middle: G + Floors */}
-        <div className="text-[9px] font-extrabold text-slate-800 whitespace-nowrap bg-slate-100/90 px-1.5 py-0.5 rounded border border-slate-200/80">
-          {wing.floors} Floors
-        </div>
-
-        {/* Right: 5-Star Rating Badge */}
-        <div className="flex items-center gap-1 select-none shrink-0">
-          <div className="flex items-center gap-0.5 bg-amber-50/80 px-1 py-0.5 rounded border border-amber-200/60" title="4.5 / 5 Rating">
-            <div className="flex text-amber-500 gap-0.25">
-              <Star size={9} fill="#f59e0b" className="stroke-amber-500" />
-              <Star size={9} fill="#f59e0b" className="stroke-amber-500" />
-              <Star size={9} fill="#f59e0b" className="stroke-amber-500" />
-              <Star size={9} fill="#f59e0b" className="stroke-amber-500" />
-              <Star size={9} fill="url(#star-half-amber-wing)" className="stroke-amber-500" />
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="text-[12.5px] font-black text-white tracking-tight">{wing.wing}</span>
+              <span className="bg-[#facc15] text-[#422006] text-[9.5px] font-black px-1.5 py-0.25 rounded flex items-center gap-0.5 leading-none">
+                ★ {getRating(wing.id)}
+              </span>
             </div>
-            <span className="text-[8.5px] font-black text-amber-700 ml-0.5">4.5</span>
+            <span className="text-[9.5px] text-slate-300 font-semibold leading-tight block mt-0.5">{wing.name}</span>
           </div>
         </div>
+
+        {/* Right: Pill Stats */}
+        <div className="flex items-center gap-1">
+          <div className="bg-white text-slate-900 px-1.5 py-0.5 rounded-md text-center min-w-[38px]">
+            <span className="font-black text-[9.5px] leading-none block">{wing.floors.replace('Floors', '')}</span>
+            <span className="font-extrabold text-[7px] text-slate-400 uppercase leading-none block mt-0.5">FLOORS</span>
+          </div>
+          <div className="bg-white text-slate-900 px-1.5 py-0.5 rounded-md text-center min-w-[34px]">
+            <span className="font-black text-[9.5px] leading-none block">{wing.units}</span>
+            <span className="font-extrabold text-[7px] text-slate-400 uppercase leading-none block mt-0.5">PROPS</span>
+          </div>
+          <div className="bg-white text-slate-900 px-1.5 py-0.5 rounded-md text-center min-w-[46px]">
+            <span className="font-black text-[9.5px] leading-none block">{getAreaFt(wing.id)}</span>
+            <span className="font-extrabold text-[7px] text-slate-400 uppercase leading-none block mt-0.5">AREA FT²</span>
+          </div>
+          <div className="bg-white text-slate-900 px-1.5 py-0.5 rounded-md text-center min-w-[42px]">
+            <span className="font-black text-[9.5px] text-emerald-600 leading-none block">{getSelectedPct(wing.id)}</span>
+            <span className="font-extrabold text-[7px] text-emerald-600 uppercase leading-none block mt-0.5">SELECTED</span>
+          </div>
+          {/* Action icon button */}
+          <button 
+            type="button"
+            onClick={(e) => onDeleteClick(e, wing.id)}
+            className="bg-white/10 hover:bg-white/20 p-1 rounded-md text-white transition flex flex-col items-center justify-center relative cursor-pointer ml-0.5 border-none" 
+            title="Wing Options"
+          >
+            <Building2 size={13} />
+            <span className="text-[6px] font-black bg-blue-600 text-white rounded px-0.5 py-0 leading-none absolute -bottom-1">NEW</span>
+          </button>
+        </div>
       </div>
 
-      {/* Units Row */}
-      <div className="flex justify-end items-center text-[9px] font-extrabold text-gray-700 mt-0.5 px-0.5">
-        <span>{wing.units} Units</span>
+      {/* 2. MIDDLE BREAKDOWN TABLE */}
+      <div className="w-full overflow-x-auto">
+        <table className="w-full text-left border-collapse text-[9.5px]">
+          <thead>
+            <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-400 font-extrabold uppercase text-[8px] h-[26px]">
+              <th className="px-2.5 py-1">TYPE</th>
+              <th className="px-1.5 py-1 text-center">UNITS</th>
+              <th className="px-1.5 py-1 text-right">AREA FT²</th>
+              <th className="px-1.5 py-1 text-right">CUB</th>
+              <th className="px-1.5 py-1 text-right text-blue-600">CUR</th>
+              <th className="px-1.5 py-1 text-right text-purple-600">RETRO</th>
+              <th className="px-1.5 py-1 text-right">TOTAL</th>
+              <th className="px-2 py-1 text-right text-emerald-600">Δ REV</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {rowData.map((row, idx) => (
+              <tr key={idx} className="h-[28px] hover:bg-slate-50/60 font-semibold">
+                <td className="px-2.5 py-0.5">
+                  <div className="flex items-center gap-1.5">
+                    {row.icon}
+                    <span className="font-bold text-slate-800 text-[10px]">{row.type}</span>
+                  </div>
+                </td>
+                <td className="px-1.5 py-0.5 text-center font-bold text-slate-800">{row.units}</td>
+                <td className="px-1.5 py-0.5 text-right font-bold text-slate-700">{row.area}</td>
+                <td className="px-1.5 py-0.5 text-right text-slate-500 font-medium">{row.cub}</td>
+                <td className="px-1.5 py-0.5 text-right text-blue-600 font-bold">{row.cur}</td>
+                <td className="px-1.5 py-0.5 text-right text-purple-600 font-bold">{row.retro}</td>
+                <td className="px-1.5 py-0.5 text-right font-black text-slate-900">{row.total}</td>
+                <td className="px-2 py-0.5 text-right">
+                  <span className="bg-emerald-50 text-emerald-600 font-black text-[9px] px-1.5 py-0.5 rounded border border-emerald-200/60 inline-block whitespace-nowrap">
+                    {row.deltaRev}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      {/* Wing Totals Panel: Area, RV, Tax */}
-      <div className="bg-gray-50 rounded-md p-1 mt-0.5 text-[8.5px] font-extrabold text-gray-700 border border-gray-200 flex justify-between select-none leading-none">
-        <div>Area: <span className="text-gray-900 font-bold">{wing.id === 'A' ? '12,456' : wing.id === 'B' ? '11,920' : wing.id === 'C' ? '9,850' : '8,400'} sqft</span></div>
-        <div>RV: <span className="text-gray-900 font-bold">{wing.id === 'A' ? '₹4.30L' : wing.id === 'B' ? '₹4.12L' : wing.id === 'C' ? '₹3.22L' : '₹2.88L'}</span></div>
-        <div>Tax: <span className="text-gray-900 font-bold">{wing.id === 'A' ? '₹68,850' : wing.id === 'B' ? '₹64,240' : wing.id === 'C' ? '₹48,560' : '₹42,390'}</span></div>
-      </div>
-
-      {/* Usage Categories Row */}
-      <div className="bg-[#f8fafc] border-t border-b border-gray-150 py-0.5 px-1 my-0.5 flex divide-x divide-gray-200 rounded-md">
-        <div className="flex items-center justify-center gap-1 flex-1 text-[8.5px] font-extrabold text-gray-700">
-          <Home size={9} className="text-[#3b82f6] shrink-0" />
-          <span>Res {wing.res}</span>
-        </div>
-        <div className="flex items-center justify-center gap-1 flex-1 text-[8.5px] font-extrabold text-gray-700 pl-0.5">
-          <Briefcase size={9} className="text-[#f97316] shrink-0" />
-          <span>Com {wing.com}</span>
-        </div>
-        <div className="flex items-center justify-center gap-1 flex-1 text-[8.5px] font-extrabold text-gray-700 pl-0.5">
-          <ShieldCheck size={9} className="text-[#a855f7] shrink-0" />
-          <span>Amen {wing.amen}</span>
-        </div>
-      </div>
-
-      {/* Demands Grid: Current Demand, Retro Demand, Total Demand in a single row */}
-      <div className="grid grid-cols-3 divide-x divide-gray-150 py-0 my-0.5 text-center bg-gray-50/50 rounded-md border border-gray-100">
-        <div className="px-0.5 text-center flex flex-col justify-center">
-          <span className="text-gray-500 font-semibold text-[7.5px] uppercase tracking-wider block truncate">Current Demand</span>
-          <span className="font-extrabold text-[#1e2b58] text-[10px] block">₹{wing.newDem}</span>
-        </div>
-        <div className="px-0.5 text-center flex flex-col justify-center">
-          <span className="text-gray-500 font-semibold text-[7.5px] uppercase tracking-wider block truncate">Retro Demand</span>
-          <span className="font-extrabold text-[#1e2b58] text-[10px] block">₹{wing.retroDem}</span>
-        </div>
-        <div className="px-0.5 text-center flex flex-col justify-center">
-          <span className="text-gray-500 font-semibold text-[7.5px] uppercase tracking-wider block truncate">Total Demand</span>
-          <span className="font-extrabold text-[#002fbe] text-[10px] block">
-            ₹{(parseInt(wing.newDem.replace(/,/g, '')) + parseInt(wing.retroDem.replace(/,/g, ''))).toLocaleString()}
+      {/* 3. BOTTOM FOOTER METRICS (3 Sub-Cards) */}
+      <div className="p-2 bg-slate-50/60 border-t border-slate-200 grid grid-cols-3 gap-1.5">
+        {/* Card 1: OVERALL TAX */}
+        <div className="bg-white border border-slate-200/80 rounded-xl p-2 flex flex-col justify-between shadow-2xs">
+          <span className="text-[7.5px] font-black text-slate-400 uppercase tracking-wider block">OVERALL TAX</span>
+          <span className="text-[11px] font-black text-slate-900 leading-tight block mt-0.5">
+            {wing.id === 'A' ? '₹70.4k – ₹1.13L' : wing.id === 'B' ? '₹62.3k – ₹1.13L' : wing.id === 'C' ? '₹70.8k – ₹94.1k' : '₹60.2k – ₹88.5k'}
           </span>
+          <span className="text-[7.5px] font-bold text-slate-400 block mt-0.5">Old vs Total Tax Comparison</span>
         </div>
-      </div>
 
-      {/* Collection & Balance Row */}
-      <div className="grid grid-cols-3 divide-x divide-gray-150 py-0 my-0 text-center bg-gray-50/50 rounded-md border border-gray-100">
-        <div className="flex flex-col justify-center">
-          <span className="text-gray-500 font-semibold text-[7px] uppercase tracking-wider block">Collection</span>
-          <span className="font-extrabold text-green-600 text-[9.5px] block">{wing.collection}</span>
-          <span className="text-[7px] text-gray-400 font-bold">({wing.collectionPct})</span>
-        </div>
-        <div className="flex flex-col justify-center">
-          <span className="text-gray-500 font-semibold text-[7px] uppercase tracking-wider block">Balance</span>
-          <span className="font-extrabold text-red-500 text-[9.5px] block">{wing.outstanding}</span>
-        </div>
-        <div className="flex flex-col justify-center">
-          <span className="text-gray-500 font-semibold text-[7px] uppercase tracking-wider block">Addl. Revenue</span>
-          <span className="font-extrabold text-[#002fbe] text-[9.5px] block">{wing.additionalRevenue}</span>
-        </div>
-      </div>
-
-      {/* Bottom Metrics Row (Interactive Mini-Tabs) */}
-      <div className="grid grid-cols-3 gap-0.5 border-t border-gray-100 pt-1 mt-0.5 text-[8px] leading-tight">
-        {/* Discount */}
+        {/* Card 2: REVENUE IMPACT */}
         <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            onMetricClick(e, wing, 'discount');
-          }}
-          className={`flex flex-col items-center justify-center p-1 rounded-md border transition-all cursor-pointer focus:ring-1 focus:ring-blue-500 outline-none ${
-            activeMetric === 'discount' 
-              ? 'bg-white border-gray-200 text-gray-900 font-extrabold' 
-              : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50/60 hover:border-gray-200 font-bold'
-          }`}
-          aria-expanded={activeMetric === 'discount'}
-          aria-label={`View ${wing.wing} Discount details`}
-        >
-          <div className="flex items-center gap-0.5">
-            <Percent size={8} className="text-gray-600" />
-            <span className="text-[7.5px] uppercase tracking-wider">Discount</span>
-          </div>
-          <span className="text-[10px] mt-0.5 text-gray-900 font-bold">{wing.discount}</span>
-          <span className="text-[7.5px] text-gray-550 font-bold">({wing.discLabel})</span>
-        </button>
-
-        {/* Exemptions */}
-        <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            onMetricClick(e, wing, 'exemptions');
-          }}
-          className={`flex flex-col items-center justify-center p-1 rounded-md border transition-all cursor-pointer focus:ring-1 focus:ring-blue-500 outline-none ${
-            activeMetric === 'exemptions' 
-              ? 'bg-white border-gray-200 text-gray-900 font-extrabold' 
-              : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50/60 hover:border-gray-200 font-bold'
-          }`}
-          aria-expanded={activeMetric === 'exemptions'}
-          aria-label={`View ${wing.wing} Exemptions details`}
-        >
-          <div className="flex items-center gap-0.5">
-            <FileText size={8} className="text-gray-600" />
-            <span className="text-[7.5px] uppercase tracking-wider">Exempt</span>
-          </div>
-          <span className="text-[10px] mt-0.5 text-gray-900 font-bold">{wing.exemp}</span>
-          <span className="text-[7.5px] text-gray-550 font-bold truncate max-w-full" title={wing.exempLabel}>({wing.exempLabel})</span>
-        </button>
-
-        {/* REV Impact */}
-        <button 
+          type="button"
           onClick={(e) => {
             e.stopPropagation();
             onMetricClick(e, wing, 'rvImpact');
           }}
-          className={`flex flex-col items-center justify-center p-1 rounded-md border transition-all cursor-pointer focus:ring-1 focus:ring-blue-500 outline-none ${
-            activeMetric === 'rvImpact' 
-              ? 'bg-white border-gray-200 text-gray-900 font-extrabold' 
-              : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50/60 hover:border-gray-200 font-bold'
-          }`}
-          aria-expanded={activeMetric === 'rvImpact'}
-          aria-label={`View ${wing.wing} REV Impact details`}
+          className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-2 flex flex-col justify-between shadow-2xs text-left cursor-pointer hover:bg-emerald-100/60 transition"
         >
-          <div className="flex items-center gap-0.5">
-            <TrendingUp size={8} className="text-gray-600" />
-            <span className="text-[7.5px] uppercase tracking-wider">REV</span>
+          <span className="text-[7.5px] font-black text-emerald-800 uppercase tracking-wider block">REVENUE IMPACT</span>
+          <div className="flex items-center gap-1 mt-0.5">
+            <div className="w-4 h-4 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+              <TrendingUp size={10} className="text-emerald-600" />
+            </div>
+            <span className="text-[12px] font-black text-emerald-700 leading-tight">
+              {wing.id === 'A' ? '↑ ₹34.4k' : wing.id === 'B' ? '↑ ₹30.5k' : wing.id === 'C' ? '↑ ₹23.5k' : '↑ ₹18.2k'}
+            </span>
           </div>
-          <span className="text-[10px] mt-0.5 text-gray-900 font-bold">{wing.rvImpact}</span>
-          <span className="text-[7.5px] text-gray-655 font-bold">({wing.rvLabel})</span>
+          <span className="text-[7.5px] font-bold text-emerald-600 block mt-0.5">
+            {wing.id === 'A' ? 'Increase 43.5% vs old tax' : wing.id === 'B' ? 'Increase 32.0% vs old tax' : wing.id === 'C' ? 'Increase 31.1% vs old tax' : 'Increase 25.4% vs old tax'}
+          </span>
         </button>
-      </div>
 
-      {/* Mods Row */}
-      <div className="flex items-center justify-between text-[7.5px] font-bold text-gray-500 mt-0.5 pt-0.5 border-t border-gray-100">
-        <span>Mods <span className="text-gray-700 font-extrabold">{wing.mods.matched}</span></span>
-        <span className="text-red-500">Missing <span className="font-extrabold">{wing.mods.missing}</span></span>
-        <span className="text-blue-500">New <span className="font-extrabold">{wing.mods.newCount}</span></span>
-        <span className="text-amber-500">Matched <span className="font-extrabold">{wing.mods.modified}</span></span>
+        {/* Card 3: EXEMPTION APPLIED */}
+        <button 
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onMetricClick(e, wing, 'exemptions');
+          }}
+          className="bg-purple-50/70 border border-purple-200/80 rounded-xl p-2 flex flex-col justify-between shadow-2xs text-left cursor-pointer hover:bg-purple-100/60 transition"
+        >
+          <span className="text-[7.5px] font-black text-purple-800 uppercase tracking-wider block">EXEMPTION APPLIED</span>
+          <span className="text-[11px] font-black text-purple-900 leading-tight block mt-0.5">
+            {wing.id === 'A' ? '₹2,540' : wing.id === 'B' ? '₹1,880' : wing.id === 'C' ? '₹4,720' : '₹1,200'}
+          </span>
+          <div className="flex items-center gap-1 mt-0.5">
+            <span className="bg-purple-200/80 text-purple-800 font-black text-[7.5px] px-1 py-0.25 rounded uppercase">
+              {wing.id === 'C' ? '1 PROPERTY' : '2 PROPERTIES'}
+            </span>
+            <span className="text-[7.5px] font-bold text-purple-600">Exempted</span>
+          </div>
+          <span className="text-[8px] font-black text-blue-600 hover:underline block mt-0.5">View List &gt;</span>
+        </button>
       </div>
     </div>
   );
