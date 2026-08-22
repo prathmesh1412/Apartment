@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronUp, Plus, Layers, Building2, Check, GripVertical, Minimize2, Maximize2, RotateCcw } from 'lucide-react';
+import { ChevronUp, Plus, Layers, Building2, Check, GripVertical, Minimize2, Maximize2, RotateCcw, X } from 'lucide-react';
 import { comparisonRows } from '@/components/modules/Apartment_design/shared/mockData';
 import TaxRulesModal from '@/components/modules/Apartment_design/panels/TaxRulesModal';
 import { PreviousAssessmentTable, CurrentSurveyTable } from './ComparisonSubTables';
@@ -308,6 +308,28 @@ export default function ComparisonTable({
       recalculatePanelWidths(nextState);
       return nextState;
     });
+  };
+
+  const maximizePanel = (panel: 'left' | 'middle' | 'right') => {
+    const isAlreadyMaximized =
+      (panel === 'right' && minimizedPanels.middle && minimizedPanels.left) ||
+      (panel === 'middle' && minimizedPanels.right && minimizedPanels.left) ||
+      (panel === 'left' && minimizedPanels.right && minimizedPanels.middle);
+
+    if (isAlreadyMaximized) {
+      restoreAllPanels();
+    } else {
+      setMinimizedPanels({
+        right: panel !== 'right',
+        middle: panel !== 'middle',
+        left: panel !== 'left'
+      });
+      setPanelWidths({
+        right: panel === 'right' ? 100 : 0,
+        middle: panel === 'middle' ? 100 : 0,
+        left: panel === 'left' ? 100 : 0
+      });
+    }
   };
 
   const recalculatePanelWidths = (minState: { left: boolean; middle: boolean; right: boolean }) => {
@@ -992,11 +1014,22 @@ export default function ComparisonTable({
                   <div className="flex items-center gap-1">
                     <span className="text-[8px] font-bold text-gray-400 select-none tabular-nums mr-1">{Math.round(panelWidths.right)}%</span>
                     <button
-                      onClick={() => toggleMinimizePanel('right')}
+                      onClick={() => maximizePanel('right')}
                       className="p-1 hover:bg-[#1e40af]/10 text-[#1e40af] rounded transition cursor-pointer"
-                      title="Minimize New Survey table"
+                      title={minimizedPanels.middle && minimizedPanels.left ? "Restore 3-column view" : "Maximize New Survey section"}
                     >
-                      <Minimize2 size={11} />
+                      {minimizedPanels.middle && minimizedPanels.left ? (
+                        <Minimize2 size={11} />
+                      ) : (
+                        <Maximize2 size={11} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() => toggleMinimizePanel('right')}
+                      className="p-1 hover:bg-red-100 text-gray-500 hover:text-red-600 rounded transition cursor-pointer"
+                      title="Hide / Close New Survey section"
+                    >
+                      <X size={11} />
                     </button>
                   </div>
                 </div>
@@ -1035,11 +1068,22 @@ export default function ComparisonTable({
                       AI Status
                     </button>
                     <button
-                      onClick={() => toggleMinimizePanel('middle')}
+                      onClick={() => maximizePanel('middle')}
                       className="p-1 hover:bg-[#8a6d1c]/10 text-[#8a6d1c] rounded transition cursor-pointer"
-                      title="Minimize Difference Engine table"
+                      title={minimizedPanels.right && minimizedPanels.left ? "Restore 3-column view" : "Maximize Difference Engine section"}
                     >
-                      <Minimize2 size={11} />
+                      {minimizedPanels.right && minimizedPanels.left ? (
+                        <Minimize2 size={11} />
+                      ) : (
+                        <Maximize2 size={11} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() => toggleMinimizePanel('middle')}
+                      className="p-1 hover:bg-red-100 text-gray-500 hover:text-red-600 rounded transition cursor-pointer"
+                      title="Hide / Close Difference Engine section"
+                    >
+                      <X size={11} />
                     </button>
                   </div>
                 </div>
@@ -1127,11 +1171,22 @@ export default function ComparisonTable({
                   <div className="flex items-center gap-1">
                     <span className="text-[8.5px] font-bold text-gray-400 select-none tabular-nums mr-1">{Math.round(panelWidths.left)}%</span>
                     <button
-                      onClick={() => toggleMinimizePanel('left')}
+                      onClick={() => maximizePanel('left')}
                       className="p-1 hover:bg-[#006a4e]/10 text-[#006a4e] rounded transition cursor-pointer"
-                      title="Minimize Existing Assessment table"
+                      title={minimizedPanels.right && minimizedPanels.middle ? "Restore 3-column view" : "Maximize Existing Assessment section"}
                     >
-                      <Minimize2 size={11} />
+                      {minimizedPanels.right && minimizedPanels.middle ? (
+                        <Minimize2 size={11} />
+                      ) : (
+                        <Maximize2 size={11} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() => toggleMinimizePanel('left')}
+                      className="p-1 hover:bg-red-100 text-gray-500 hover:text-red-600 rounded transition cursor-pointer"
+                      title="Hide / Close Existing Assessment section"
+                    >
+                      <X size={11} />
                     </button>
                   </div>
                 </div>

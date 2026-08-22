@@ -59,8 +59,8 @@ export default function ApartmentComparisonView({
               activeTabClassName="bg-[#111c44] text-white font-extrabold shadow-xs"
             >
               <TabList className="bg-transparent p-0 gap-1 border-none">
-                <Tab value="wing-overview" className="rounded-full px-3 py-1 text-[10.5px]">Wing Overview</Tab>
                 <Tab value="floor-comparison" className="rounded-full px-3 py-1 text-[10.5px]">Floor / Unit Comparison</Tab>
+                <Tab value="wing-overview" className="rounded-full px-3 py-1 text-[10.5px]">Wing Overview</Tab>
               </TabList>
             </Tabs>
           </div>

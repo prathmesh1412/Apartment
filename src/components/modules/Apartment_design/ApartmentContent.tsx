@@ -13,6 +13,7 @@ import AddWingModal from './wings/AddWingModal';
 import WingMetricDetailsPopup from './wings/WingMetricDetailsPopup';
 import ApartmentComparisonView from './dashboard/ApartmentComparisonView';
 import ApartmentImageOverlays from './panels/ApartmentImageOverlays';
+import TopPropertySearchBar from '@/components/modules/Individual Design/layout/TopPropertySearchBar';
 
 export default function ApartmentContent({
   activeAction,
@@ -98,6 +99,11 @@ export default function ApartmentContent({
 
   return (
     <div className="flex-grow flex-1 min-h-0 bg-[#f0f2f5] p-1.5 font-sans text-gray-855 animate-fadeIn relative flex flex-col h-full overflow-hidden">
+      {/* Top Search Bar Section */}
+      <div className="w-full shrink-0 mb-1.5">
+        <TopPropertySearchBar />
+      </div>
+
       {/* 1. Header Overview Section (Same as Property Details page) */}
       <div className="w-full shrink-0 mb-1.5">
         <PropertySummary 
