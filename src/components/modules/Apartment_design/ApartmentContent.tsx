@@ -11,6 +11,7 @@ import VerificationBadges from './panels/VerificationBadges';
 import WingSummary from './wings/WingSummary';
 import AddWingModal from './wings/AddWingModal';
 import WingMetricDetailsPopup from './wings/WingMetricDetailsPopup';
+import WingAmcDrawer from './wings/WingAmcDrawer';
 import ApartmentComparisonView from './dashboard/ApartmentComparisonView';
 import ApartmentImageOverlays from './panels/ApartmentImageOverlays';
 import TopPropertySearchBar from '@/components/modules/Individual Design/layout/TopPropertySearchBar';
@@ -45,6 +46,7 @@ export default function ApartmentContent({
   });
   const [popupData, setPopupData] = useState<any | null>(null);
   const [addWingModalOpen, setAddWingModalOpen] = useState(false);
+  const [amcDrawerWing, setAmcDrawerWing] = useState<WingDetails | null>(null);
   const summaryRef = React.useRef<HTMLDivElement>(null);
   const comparisonTableRef = React.useRef<HTMLDivElement>(null);
 
@@ -131,6 +133,9 @@ export default function ApartmentContent({
             activeMetrics={activeMetrics}
             handleMetricClick={handleMetricClick}
             handleDeleteWing={handleDeleteWing}
+            onAmcClick={(e, wing) => {
+              setAmcDrawerWing(wing);
+            }}
             onAddWingClick={() => setAddWingModalOpen(true)}
             onWingCardClick={(wingName) => {
               let val = "All Wings";
@@ -189,6 +194,13 @@ export default function ApartmentContent({
         onClose={() => setAddWingModalOpen(false)}
         wings={wings}
         onAddWing={(newWing) => setWings(prev => [...prev, newWing])}
+      />
+
+      {/* Wing AMC Details Drawer */}
+      <WingAmcDrawer 
+        isOpen={Boolean(amcDrawerWing)}
+        onClose={() => setAmcDrawerWing(null)}
+        wing={amcDrawerWing}
       />
 
       {/* popupData details popover */}

@@ -1004,28 +1004,28 @@ export default function ComparisonTable({
           <div className="w-full flex overflow-hidden relative" style={{ minHeight: 0 }}>
 
             {/* LEFT TABLE: New Survey (Current) */}
-            {!minimizedPanels.right && (
-              <div className="flex flex-col bg-[#f5f8fc] overflow-hidden transition-all duration-300" style={{ width: `${panelWidths.right}%` }}>
+            {!minimizedPanels.left && (
+              <div className="flex flex-col bg-[#f5f8fc] overflow-hidden transition-all duration-300" style={{ width: `${panelWidths.left}%` }}>
                 <div className="bg-[#edf2ff] border-b border-gray-200 px-3 py-1.5 flex items-center justify-between h-[34px] shrink-0 relative">
                   <div className="flex items-center gap-1 select-none">
                     <span className="text-[10px] font-black text-[#1e40af] uppercase tracking-tight">New Survey</span>
                     <span className="text-[9.5px] text-[#1e40af]/75 font-semibold">(Current)</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[8px] font-bold text-gray-400 select-none tabular-nums mr-1">{Math.round(panelWidths.right)}%</span>
+                    <span className="text-[8px] font-bold text-gray-400 select-none tabular-nums mr-1">{Math.round(panelWidths.left)}%</span>
                     <button
-                      onClick={() => maximizePanel('right')}
+                      onClick={() => maximizePanel('left')}
                       className="p-1 hover:bg-[#1e40af]/10 text-[#1e40af] rounded transition cursor-pointer"
-                      title={minimizedPanels.middle && minimizedPanels.left ? "Restore 3-column view" : "Maximize New Survey section"}
+                      title={minimizedPanels.middle && minimizedPanels.right ? "Restore 3-column view" : "Maximize New Survey section"}
                     >
-                      {minimizedPanels.middle && minimizedPanels.left ? (
+                      {minimizedPanels.middle && minimizedPanels.right ? (
                         <Minimize2 size={11} />
                       ) : (
                         <Maximize2 size={11} />
                       )}
                     </button>
                     <button
-                      onClick={() => toggleMinimizePanel('right')}
+                      onClick={() => toggleMinimizePanel('left')}
                       className="p-1 hover:bg-red-100 text-gray-500 hover:text-red-600 rounded transition cursor-pointer"
                       title="Hide / Close New Survey section"
                     >
@@ -1039,7 +1039,7 @@ export default function ComparisonTable({
                   onOpenRules={setSelectedRowForRules}
                   getStatusBgClass={getStatusBgClass}
                   getStatusBadgeClass={getStatusBadgeClass}
-                  scrollContainerRef={rightTableRef}
+                  scrollContainerRef={leftTableRef}
                   isAllWingsSelected={selectedWing === "All Wings"}
                 />
               </div>
@@ -1092,35 +1092,35 @@ export default function ComparisonTable({
                   ref={middleTableRef}
                   className={`w-full scrollbar-thin overflow-y-hidden ${selectedWing === "All Wings" ? "overflow-auto h-[400px]" : "overflow-x-auto"}`}
                 >
-                  <table className="min-w-[280px] text-left border-collapse text-[10px] w-full">
+                  <table className="w-full min-w-[340px] text-left border-collapse text-[10px]">
                     <thead>
-                      <tr className="bg-[#fdf8e2]/60 border-b border-amber-200 text-[#8a6d1c] font-black uppercase h-[32px] align-middle">
-                        <th className="px-1.5 text-right align-middle whitespace-nowrap border-r border-amber-200/60">Carpet Δ</th>
-                        <th className="px-1.5 text-right align-middle whitespace-nowrap border-r border-amber-200/60">BUA Δ</th>
-                        <th className="px-1.5 text-right align-middle whitespace-nowrap border-r border-amber-200/60">RV Δ (₹)</th>
-                        <th className="px-1.5 text-right align-middle whitespace-nowrap border-r border-amber-200/60">Tax Δ (₹)</th>
-                        <th className="px-1.5 text-right align-middle whitespace-nowrap border-r border-amber-200/60">Rt Tax Δ</th>
-                        <th className="px-1.5 text-center align-middle whitespace-nowrap">Suggestion</th>
+                      <tr className="bg-[#fdf8e2]/60 border-b border-amber-200 text-[#8a6d1c] font-black uppercase h-[32px] align-middle [&>th]:align-middle [&>th]:py-0">
+                        <th className="px-2 text-right align-middle whitespace-nowrap border-r border-amber-200/60">Carpet Δ</th>
+                        <th className="px-2 text-right align-middle whitespace-nowrap border-r border-amber-200/60">BUA Δ</th>
+                        <th className="px-2 text-right align-middle whitespace-nowrap border-r border-amber-200/60">RV Δ (₹)</th>
+                        <th className="px-2 text-right align-middle whitespace-nowrap border-r border-amber-200/60">Tax Δ (₹)</th>
+                        <th className="px-2 text-right align-middle whitespace-nowrap border-r border-amber-200/60">Rt Tax Δ</th>
+                        <th className="px-2 text-center align-middle whitespace-nowrap">Suggestion</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-150">
                       {rows.map((row, index) => {
                         return (
-                          <tr key={index} className={`h-[36px] font-bold border-b border-black hover:bg-gray-50/50 align-middle [&>td]:align-middle [&>td]:py-0 ${getStatusBgClass(row.diffStatus)}`}>
-                            <td className={`py-1 px-1.5 text-right whitespace-nowrap border-r border-amber-100 ${row.diffCarpet > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
+                          <tr key={index} className={`h-[36px] font-bold border-b border-gray-150 hover:bg-gray-50/50 align-middle [&>td]:align-middle [&>td]:py-0 ${getStatusBgClass(row.diffStatus)}`}>
+                            <td className={`py-1 px-2 text-right whitespace-nowrap border-r border-amber-100 ${row.diffCarpet > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
                               {row.diffCarpet > 0 ? `+${row.diffCarpet}` : '0'}
                             </td>
-                            <td className={`py-1 px-1.5 text-right whitespace-nowrap border-r border-amber-100 ${row.diffBua > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
+                            <td className={`py-1 px-2 text-right whitespace-nowrap border-r border-amber-100 ${row.diffBua > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
                               {row.diffBua > 0 ? `+${row.diffBua}` : '0'}
                             </td>
-                            <td className={`py-1 px-1.5 text-right whitespace-nowrap border-r border-amber-100 ${row.diffRv > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
+                            <td className={`py-1 px-2 text-right whitespace-nowrap border-r border-amber-100 ${row.diffRv > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
                               {row.diffRv > 0 ? `+${row.diffRv.toLocaleString()}` : '0'}
                             </td>
-                            <td className={`py-1 px-1.5 text-right whitespace-nowrap border-r border-amber-100 ${row.diffTax > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
+                            <td className={`py-1 px-2 text-right whitespace-nowrap border-r border-amber-100 ${row.diffTax > 0 ? 'text-[#dc2626] font-black' : 'text-slate-500 font-semibold'}`}>
                               {row.diffTax > 0 ? `+${row.diffTax.toLocaleString()}` : '0'}
                             </td>
-                            <td className="py-1 px-1.5 text-right text-slate-500 font-semibold whitespace-nowrap border-r border-amber-100">0</td>
-                            <td className="py-1 px-1 text-center whitespace-nowrap select-none">
+                            <td className="py-1 px-2 text-right text-slate-500 font-semibold whitespace-nowrap border-r border-amber-100">0</td>
+                            <td className="py-1 px-1.5 text-center whitespace-nowrap select-none">
                               {row.diffSuggestion !== "-" ? (
                                 <span className={`text-[8.5px] font-black px-1.5 py-0.5 rounded border leading-none ${row.diffSuggestion === 'Verify Area' ? 'bg-green-50 text-green-600 border-green-200' :
                                   row.diffSuggestion === 'Create New' ? 'bg-blue-50 text-blue-600 border-blue-200' :
@@ -1135,12 +1135,12 @@ export default function ComparisonTable({
                       })}
 
                       <tr className="h-[36px] bg-sky-100/80 font-black border-t border-sky-300 text-sky-900 align-middle [&>td]:align-middle [&>td]:py-0">
-                        <td className="py-2 px-1.5 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+124</td>
-                        <td className="py-2 px-1.5 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+200</td>
-                        <td className="py-2 px-1.5 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+2,917</td>
-                        <td className="py-2 px-1.5 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+11,680</td>
-                        <td className="py-2 px-1.5 text-right text-slate-500 font-black whitespace-nowrap border-r border-amber-200/60">0</td>
-                        <td className="py-2 px-1.5 text-center whitespace-nowrap uppercase text-[8.5px] font-black tracking-wider text-[#8a6d1c]">TOTAL Δ</td>
+                        <td className="py-2 px-2 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+124</td>
+                        <td className="py-2 px-2 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+200</td>
+                        <td className="py-2 px-2 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+2,917</td>
+                        <td className="py-2 px-2 text-right whitespace-nowrap text-[#dc2626] font-black border-r border-amber-200/60">+11,680</td>
+                        <td className="py-2 px-2 text-right text-slate-500 font-black whitespace-nowrap border-r border-amber-200/60">0</td>
+                        <td className="py-2 px-2 text-center whitespace-nowrap uppercase text-[8.5px] font-black tracking-wider text-[#8a6d1c]">TOTAL Δ</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1161,28 +1161,28 @@ export default function ComparisonTable({
             )}
 
             {/* RIGHT TABLE: Existing Assessment (Previous) */}
-            {!minimizedPanels.left && (
-              <div className="flex flex-col bg-[#f5f8fc] overflow-hidden transition-all duration-300" style={{ width: `${panelWidths.left}%` }}>
+            {!minimizedPanels.right && (
+              <div className="flex flex-col bg-[#f5f8fc] overflow-hidden transition-all duration-300" style={{ width: `${panelWidths.right}%` }}>
                 <div className="bg-[#edf7f4] border-b border-gray-200 px-3 py-1.5 flex items-center justify-between h-[34px] shrink-0 relative">
                   <div className="flex items-center gap-1 select-none">
                     <span className="text-[10px] font-black text-[#006a4e] uppercase tracking-tight">Existing Assessment</span>
                     <span className="text-[9.5px] text-[#006a4e]/75 font-semibold">(Previous)</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[8.5px] font-bold text-gray-400 select-none tabular-nums mr-1">{Math.round(panelWidths.left)}%</span>
+                    <span className="text-[8.5px] font-bold text-gray-400 select-none tabular-nums mr-1">{Math.round(panelWidths.right)}%</span>
                     <button
-                      onClick={() => maximizePanel('left')}
+                      onClick={() => maximizePanel('right')}
                       className="p-1 hover:bg-[#006a4e]/10 text-[#006a4e] rounded transition cursor-pointer"
-                      title={minimizedPanels.right && minimizedPanels.middle ? "Restore 3-column view" : "Maximize Existing Assessment section"}
+                      title={minimizedPanels.left && minimizedPanels.middle ? "Restore 3-column view" : "Maximize Existing Assessment section"}
                     >
-                      {minimizedPanels.right && minimizedPanels.middle ? (
+                      {minimizedPanels.left && minimizedPanels.middle ? (
                         <Minimize2 size={11} />
                       ) : (
                         <Maximize2 size={11} />
                       )}
                     </button>
                     <button
-                      onClick={() => toggleMinimizePanel('left')}
+                      onClick={() => toggleMinimizePanel('right')}
                       className="p-1 hover:bg-red-100 text-gray-500 hover:text-red-600 rounded transition cursor-pointer"
                       title="Hide / Close Existing Assessment section"
                     >
@@ -1196,7 +1196,7 @@ export default function ComparisonTable({
                   onOpenRules={setSelectedRowForRules}
                   getStatusBgClass={getStatusBgClass}
                   getStatusBadgeClass={getStatusBadgeClass}
-                  scrollContainerRef={leftTableRef}
+                  scrollContainerRef={rightTableRef}
                   isAllWingsSelected={selectedWing === "All Wings"}
                 />
               </div>

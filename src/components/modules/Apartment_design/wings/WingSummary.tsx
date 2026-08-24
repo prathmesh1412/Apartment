@@ -9,6 +9,7 @@ interface WingSummaryProps {
   activeMetrics: Record<string, 'discount' | 'exemptions' | 'rvImpact'>;
   handleMetricClick: (e: React.MouseEvent<HTMLButtonElement>, wing: WingDetails, metricType: 'discount' | 'exemptions' | 'rvImpact') => void;
   handleDeleteWing: (e: React.MouseEvent<HTMLButtonElement>, wingId: string) => void;
+  onAmcClick?: (e: React.MouseEvent<HTMLButtonElement>, wing: WingDetails) => void;
   onAddWingClick: () => void;
   onWingCardClick: (wingName: string) => void;
 }
@@ -19,6 +20,7 @@ export default function WingSummary({
   activeMetrics,
   handleMetricClick,
   handleDeleteWing,
+  onAmcClick,
   onAddWingClick,
   onWingCardClick
 }: WingSummaryProps) {
@@ -73,6 +75,7 @@ export default function WingSummary({
                 activeMetric={activeMetrics[wing.id] || 'discount'}
                 onMetricClick={handleMetricClick}
                 onDeleteClick={handleDeleteWing}
+                onAmcClick={onAmcClick}
                 onClick={() => onWingCardClick(wing.wing)}
               />
             </div>

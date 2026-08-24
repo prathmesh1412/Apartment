@@ -1,8 +1,8 @@
 import React from 'react';
-import { 
-  Home, 
-  Briefcase, 
-  ShieldCheck, 
+import {
+  Home,
+  Briefcase,
+  ShieldCheck,
   TrendingUp,
   Building2
 } from 'lucide-react';
@@ -13,14 +13,16 @@ interface WingCardProps {
   activeMetric: 'discount' | 'exemptions' | 'rvImpact';
   onMetricClick: (e: React.MouseEvent<HTMLButtonElement>, wing: WingDetails, metricType: 'discount' | 'exemptions' | 'rvImpact') => void;
   onDeleteClick: (e: React.MouseEvent<HTMLButtonElement>, wingId: string) => void;
+  onAmcClick?: (e: React.MouseEvent<HTMLButtonElement>, wing: WingDetails) => void;
   onClick?: () => void;
 }
 
-export default function WingCard({ 
-  wing, 
-  activeMetric, 
+export default function WingCard({
+  wing,
+  activeMetric,
   onMetricClick,
   onDeleteClick,
+  onAmcClick,
   onClick
 }: WingCardProps) {
   // Circle badge color
@@ -102,12 +104,12 @@ export default function WingCard({
   ];
 
   return (
-    <div 
+    <div
       onClick={onClick}
       className="bg-white border border-blue-900/20 hover:border-blue-900/40 rounded-2xl shadow-xs hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between h-full cursor-pointer select-none"
     >
-      {/* 1. DARK BLUE HEADER BAR */}
-      <div className="bg-[#0b193c] text-white px-3 py-2 flex items-center justify-between gap-2 shrink-0">
+      {/* 1. BLUE HEADER BAR */}
+      <div className="bg-[#002fbe] text-white px-3 py-2 flex items-center justify-between gap-2 shrink-0">
         {/* Left: Badge + Wing Name + Rating */}
         <div className="flex items-center gap-2">
           <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white font-black text-[11px] shrink-0 ${getBadgeBg(wing.id)}`}>
@@ -143,14 +145,21 @@ export default function WingCard({
             <span className="font-extrabold text-[7px] text-emerald-600 uppercase leading-none block mt-0.5">SELECTED</span>
           </div>
           {/* Action icon button */}
-          <button 
+          <button
             type="button"
-            onClick={(e) => onDeleteClick(e, wing.id)}
-            className="bg-white/10 hover:bg-white/20 p-1 rounded-md text-white transition flex flex-col items-center justify-center relative cursor-pointer ml-0.5 border-none" 
-            title="Wing Options"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onAmcClick) {
+                onAmcClick(e, wing);
+              } else {
+                onDeleteClick(e, wing.id);
+              }
+            }}
+            className="bg-white/10 hover:bg-white/20 p-1 rounded-md text-white transition flex flex-col items-center justify-center relative cursor-pointer ml-0.5 border-none"
+            title="View AMC Details"
           >
             <Building2 size={13} />
-            <span className="text-[6px] font-black bg-blue-600 text-white rounded px-0.5 py-0 leading-none absolute -bottom-1">NEW</span>
+            <span className="text-[6px] font-black bg-blue-600 text-white rounded px-0.5 py-0 leading-none absolute -bottom-1">AMC</span>
           </button>
         </div>
       </div>
@@ -208,7 +217,7 @@ export default function WingCard({
         </div>
 
         {/* Card 2: REVENUE IMPACT */}
-        <button 
+        <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
@@ -231,7 +240,7 @@ export default function WingCard({
         </button>
 
         {/* Card 3: EXEMPTION APPLIED */}
-        <button 
+        <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();

@@ -8,6 +8,7 @@ import ViewCollectionView from '@/components/modules/Individual Design/action-vi
 import GenerateNoticeView from '@/components/modules/Individual Design/action-views/notice-and-history/GenerateNoticeView';
 import PropertyHistoryView from '@/components/modules/Individual Design/action-views/notice-and-history/PropertyHistoryView';
 import DocumentsView from '@/components/modules/Individual Design/action-views/gis-and-docs/DocumentsView';
+import CertificateDocumentView from '@/components/modules/Individual Design/action-views/gis-and-docs/CertificateDocumentView';
 import ApplyOcView from '@/components/modules/Individual Design/action-views/occupancy/ApplyOcView';
 import MoreActionsView from '@/components/modules/Individual Design/action-views/actions/MoreActionsView';
 
@@ -33,7 +34,8 @@ export default function ActionViews({ activeAction, setActiveAction }: ActionVie
     case 'property-history':
       return <PropertyHistoryView onClose={onClose} />;
     case 'documents':
-      return <DocumentsView onClose={onClose} />;
+    case 'apply-retro':
+      return <CertificateDocumentView onClose={onClose} />;
     case 'apply-oc':
       return <ApplyOcView onClose={onClose} />;
     case 'more-actions':

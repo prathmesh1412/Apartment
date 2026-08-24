@@ -8,7 +8,9 @@ interface PerformanceSummaryCardProps {
 export default function PerformanceSummaryCard({ role = 'surveyor' }: PerformanceSummaryCardProps) {
   // Surveyor View (default)
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2.5 flex flex-col justify-start xl:col-span-3 w-full relative group xl:h-[148px] shrink-0 animate-fadeIn">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2.5 flex flex-col justify-start xl:col-span-3 w-full relative overflow-hidden group xl:h-[148px] shrink-0 animate-fadeIn">
+      {/* Background visual accent */}
+      <div className="absolute top-0 left-0 w-1.5 h-full bg-[#002fbe] rounded-l-xl pointer-events-none" />
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient id="star-half-orange" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -73,7 +75,7 @@ export default function PerformanceSummaryCard({ role = 'surveyor' }: Performanc
         <div className="flex flex-col justify-between pl-1 py-0.5">
           <div className="text-[9.5px] text-[#002fbe] font-extrabold uppercase tracking-wider leading-none flex items-center justify-between gap-1">
             <span>ADDL. REVENUE</span>
-            <span className="w-8 h-8 flex items-center justify-center text-2xl select-none shrink-0 animate-bounce hover:scale-125 hover:rotate-12 transition-all cursor-pointer">😊</span>
+            <span className="w-10 h-10 flex items-center justify-center text-[34px] select-none shrink-0 animate-bounce hover:scale-125 hover:rotate-12 transition-all cursor-pointer">😊</span>
           </div>
           <div className="flex items-center gap-2 mt-1">
             <div className="bg-emerald-50 w-8 h-8 rounded-lg grid place-items-center text-emerald-600 shrink-0 border border-emerald-200">
@@ -83,8 +85,8 @@ export default function PerformanceSummaryCard({ role = 'surveyor' }: Performanc
               <div className="text-gray-500 font-extrabold text-[8px] uppercase tracking-wider">This Assessment</div>
               <div className="font-black text-slate-900 leading-none text-[12.5px]">₹1,12,892</div>
               <div className="mt-0.5">
-                <span className="text-emerald-700 font-black shrink-0 whitespace-nowrap text-[8.5px] bg-emerald-100/90 px-1 py-0.25 rounded-full border border-emerald-300 flex items-center gap-0.5 w-fit">
-                  😊 ⬆ +12.4%
+                <span className="text-emerald-700 font-black shrink-0 whitespace-nowrap text-[9.5px] bg-emerald-100/90 px-1.5 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1 w-fit">
+                  <span className="text-sm">😊</span> ⬆ +12.4%
                 </span>
               </div>
             </div>

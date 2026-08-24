@@ -223,7 +223,7 @@ export default function PropertySummary({
       </div>
 
       {/* Card 2: Property Performance Summary (3 Columns: Grade, Health Score, Addl Revenue) */}
-      <div className="bg-gradient-to-b from-white to-blue-50/20 rounded-xl shadow-xs hover:shadow-md border border-blue-200/80 p-2.5 flex flex-col justify-between w-full lg:w-[440px] xl:w-[450px] shrink-0 relative overflow-hidden z-20 group transition-all duration-300">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2.5 flex flex-col justify-between w-full lg:w-[440px] xl:w-[450px] shrink-0 relative overflow-hidden z-20 group transition-all duration-300">
         {/* Background visual accent */}
         <div className="absolute top-0 left-0 w-1.5 h-full bg-[#002fbe] rounded-l-xl pointer-events-none" />
         <div className="absolute top-0 right-0 w-12 h-12 bg-blue-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform" />
@@ -327,7 +327,7 @@ export default function PropertySummary({
             <div className="text-[8.5px] text-[#002fbe] font-black uppercase tracking-wider leading-none flex items-center justify-between gap-1">
               <span>ADDL. REVENUE</span>
               <span 
-                className="w-8 h-8 flex items-center justify-center text-2xl select-none shrink-0 animate-bounce hover:scale-125 hover:rotate-12 transition-all cursor-pointer"
+                className="w-10 h-10 flex items-center justify-center text-[34px] select-none shrink-0 animate-bounce hover:scale-125 hover:rotate-12 transition-all cursor-pointer"
                 title="Revenue Boost Assessment"
               >
                 😊
@@ -342,8 +342,8 @@ export default function PropertySummary({
                 <div className="text-gray-500 font-extrabold text-[7.5px] uppercase tracking-wider">This Assessment</div>
                 <div className="font-black text-slate-900 leading-none text-[12.5px] select-all tracking-tight">₹1,12,892</div>
                 <div className="mt-0.5">
-                  <span className="text-emerald-700 font-black shrink-0 whitespace-nowrap text-[8px] bg-emerald-100/90 px-1 py-0.25 rounded-full border border-emerald-300 shadow-2xs animate-pulse flex items-center gap-0.5 w-fit">
-                    <span>😊 ⬆ +12.4%</span>
+                  <span className="text-emerald-700 font-black shrink-0 whitespace-nowrap text-[9px] bg-emerald-100/90 px-1.5 py-0.5 rounded-full border border-emerald-300 shadow-2xs animate-pulse flex items-center gap-1 w-fit">
+                    <span className="text-sm">😊</span> ⬆ +12.4%
                   </span>
                 </div>
                 <div className="text-gray-500 font-extrabold text-[7.5px] whitespace-nowrap">(Tax+Pen+Int)</div>
