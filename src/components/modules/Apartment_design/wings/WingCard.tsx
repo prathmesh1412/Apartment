@@ -73,7 +73,7 @@ export default function WingCard({
       icon: <Home size={11} className="text-blue-500 shrink-0" />,
       units: wing.res || '16',
       area: wing.id === 'A' ? '8,420' : wing.id === 'B' ? '8,010' : wing.id === 'C' ? '6,420' : '5,800',
-      cub: wing.id === 'A' ? '₹48k' : wing.id === 'B' ? '₹50.4k' : wing.id === 'C' ? '₹41.1k' : '₹38k',
+      old: wing.id === 'A' ? '₹48k' : wing.id === 'B' ? '₹50.4k' : wing.id === 'C' ? '₹41.1k' : '₹38k',
       cur: wing.id === 'A' ? '₹25.8k' : wing.id === 'B' ? '₹23.8k' : wing.id === 'C' ? '₹27.7k' : '₹22k',
       retro: wing.id === 'A' ? '₹41.4k' : wing.id === 'B' ? '₹41.4k' : wing.id === 'C' ? '₹31k' : '₹28k',
       total: wing.id === 'A' ? '₹67.2k' : wing.id === 'B' ? '₹71.2k' : wing.id === 'C' ? '₹58.7k' : '₹50k',
@@ -84,7 +84,7 @@ export default function WingCard({
       icon: <Briefcase size={11} className="text-amber-500 shrink-0" />,
       units: wing.com || '2',
       area: wing.id === 'A' ? '3,120' : wing.id === 'B' ? '3,120' : wing.id === 'C' ? '2,820' : '2,100',
-      cub: wing.id === 'A' ? '₹25.1k' : wing.id === 'B' ? '₹25.1k' : wing.id === 'C' ? '₹23.9k' : '₹18k',
+      old: wing.id === 'A' ? '₹25.1k' : wing.id === 'B' ? '₹25.1k' : wing.id === 'C' ? '₹23.9k' : '₹18k',
       cur: wing.id === 'A' ? '₹11.7k' : wing.id === 'B' ? '₹11.7k' : wing.id === 'C' ? '₹13.6k' : '₹9k',
       retro: wing.id === 'A' ? '₹22.9k' : wing.id === 'B' ? '₹22.9k' : wing.id === 'C' ? '₹16k' : '₹12k',
       total: wing.id === 'A' ? '₹34.6k' : wing.id === 'B' ? '₹34.6k' : wing.id === 'C' ? '₹29.6k' : '₹21k',
@@ -95,7 +95,7 @@ export default function WingCard({
       icon: <ShieldCheck size={11} className="text-purple-500 shrink-0" />,
       units: wing.amen || '1',
       area: wing.id === 'A' ? '790' : wing.id === 'B' ? '790' : wing.id === 'C' ? '600' : '500',
-      cub: wing.id === 'A' ? '₹6.8k' : wing.id === 'B' ? '₹6.8k' : wing.id === 'C' ? '₹5.6k' : '₹4k',
+      old: wing.id === 'A' ? '₹6.8k' : wing.id === 'B' ? '₹6.8k' : wing.id === 'C' ? '₹5.6k' : '₹4k',
       cur: wing.id === 'A' ? '₹2.1k' : wing.id === 'B' ? '₹2.1k' : wing.id === 'C' ? '₹2.8k' : '₹1.8k',
       retro: wing.id === 'A' ? '₹4.8k' : wing.id === 'B' ? '₹4.8k' : wing.id === 'C' ? '₹3.2k' : '₹2.5k',
       total: wing.id === 'A' ? '₹7k' : wing.id === 'B' ? '₹7k' : wing.id === 'C' ? '₹6k' : '₹4.3k',
@@ -172,7 +172,7 @@ export default function WingCard({
               <th className="px-2.5 py-1">TYPE</th>
               <th className="px-1.5 py-1 text-center">UNITS</th>
               <th className="px-1.5 py-1 text-right">AREA FT²</th>
-              <th className="px-1.5 py-1 text-right">CUB</th>
+              <th className="px-1.5 py-1 text-right">OLD</th>
               <th className="px-1.5 py-1 text-right text-blue-600">CUR</th>
               <th className="px-1.5 py-1 text-right text-purple-600">RETRO</th>
               <th className="px-1.5 py-1 text-right">TOTAL</th>
@@ -190,7 +190,7 @@ export default function WingCard({
                 </td>
                 <td className="px-1.5 py-0.5 text-center font-bold text-slate-800">{row.units}</td>
                 <td className="px-1.5 py-0.5 text-right font-bold text-slate-700">{row.area}</td>
-                <td className="px-1.5 py-0.5 text-right text-slate-500 font-medium">{row.cub}</td>
+                <td className="px-1.5 py-0.5 text-right text-slate-500 font-medium">{row.old}</td>
                 <td className="px-1.5 py-0.5 text-right text-blue-600 font-bold">{row.cur}</td>
                 <td className="px-1.5 py-0.5 text-right text-purple-600 font-bold">{row.retro}</td>
                 <td className="px-1.5 py-0.5 text-right font-black text-slate-900">{row.total}</td>
