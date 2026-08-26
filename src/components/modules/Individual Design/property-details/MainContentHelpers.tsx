@@ -78,7 +78,6 @@ export function NavigationTabs({
     <div className="flex items-center justify-between border-b border-[#002fbe] font-bold text-xs text-[#002fbe] shrink-0 select-none mt-1 pb-[1px] overflow-x-auto no-scrollbar gap-2">
       <div className="flex items-end gap-1.5 shrink-0">
         <Tab active={activeTab === 'property'} onClick={() => setActiveTab('property')} icon={<FolderOpen size={13} />} label="Floor Details" />
-        <Tab active={activeTab === 'kyc'} onClick={() => setActiveTab('kyc')} icon={<UserCheck size={13} />} label="KYC Details" />
         <Tab active={activeTab === 'building'} onClick={() => setActiveTab('building')} icon={<Building size={13} />} label="Building Permission" />
         <Tab active={activeTab === 'discount'} onClick={() => setActiveTab('discount')} icon={<Percent size={13} />} label="Discount & Social Data" />
         <Tab active={activeTab === 'old'} onClick={() => setActiveTab('old')} icon={<History size={13} />} label="Old Details" />

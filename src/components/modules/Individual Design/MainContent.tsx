@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import TopPropertySearchBar from '@/components/modules/Individual Design/layout/TopPropertySearchBar';
 import PropertySummary from '@/components/modules/Individual Design/property-details/PropertySummary';
+import PropertyDetailsCard from '@/components/modules/Individual Design/property-details/PropertyDetailsCard';
 import ActionViews from '@/components/modules/Individual Design/layout/ActionViews';
 import { initialComplianceIssues, ComplianceIssue } from '@/components/modules/Individual Design/shared/aiReportData';
 import FloorComponentDetailsTable from '@/components/modules/Individual Design/property-details/FloorComponentDetailsTable';
@@ -113,25 +114,14 @@ export default function MainContent({
   return (
     <div ref={containerRef} className="dashboard-content flex-1 h-full overflow-hidden bg-transparent p-0 font-sans text-gray-800 relative z-10 flex flex-col gap-2">
       <TopPropertySearchBar />
-      <PropertySummary 
-        activeTab={activeTab} 
-        onHoverImg={(url, pos) => {
-          setHoveredImg(url);
-          if (pos) setHoverPosition(pos);
-        }} 
-        onClickImg={(url) => setSelectedImg(url)} 
-        activeAction={activeAction} 
-        setActiveAction={setActiveAction} 
-      />
-
       {activeAction ? (
         <div className="flex-grow flex-1 min-h-0 bg-white border border-gray-200 rounded-xl p-3.5 shadow-md overflow-hidden relative">
           <ActionViews activeAction={activeAction} setActiveAction={setActiveAction} />
         </div>
       ) : (
         <div className="flex-1 min-h-0 flex flex-col lg:flex-row gap-2.5 overflow-hidden">
-          <div className="flex-grow flex-1 min-h-0 flex flex-col gap-2 overflow-hidden w-full lg:w-0">
-            
+          <div className="flex-grow flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto scrollbar-thin pr-1 w-full lg:w-0">
+            <PropertyDetailsCard />
             <StatusBadgesRow isWaterLinked={isWaterLinked} isFireNocValid={isFireNocValid} />
             <NavigationTabs 
               activeTab={activeTab} 

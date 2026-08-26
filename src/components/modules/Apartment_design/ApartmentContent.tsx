@@ -6,6 +6,7 @@ import ActionViews from '@/components/modules/Individual Design/layout/ActionVie
 // Sub-components & Mock Data
 import { initialWings, WingDetails } from './shared/mockData';
 import PropertySummary from '@/components/modules/Individual Design/property-details/PropertySummary';
+import PropertyDetailsCard from './panels/PropertyDetailsCard';
 import DesignRightPanel from '@/components/modules/Individual Design/property-details/DesignRightPanel';
 import VerificationBadges from './panels/VerificationBadges';
 import WingSummary from './wings/WingSummary';
@@ -106,24 +107,13 @@ export default function ApartmentContent({
         <TopPropertySearchBar />
       </div>
 
-      {/* 1. Header Overview Section (Same as Property Details page) */}
-      <div className="w-full shrink-0 mb-1.5">
-        <PropertySummary 
-          onHoverImg={(url, pos) => handleHoverImage(url, pos as 'left' | 'right')}
-          onClickImg={(url) => {
-            setSelectedImg(url);
-            setSelectedImgTitle("Property Image");
-          }}
-          activeAction={activeAction}
-          setActiveAction={setActiveAction}
-          propertyCategory="Apartment"
-        />
-      </div>
-
       {/* Main Split Layout Grid */}
       <div className="flex flex-col lg:flex-row gap-1.5 items-stretch flex-1 min-h-0 w-full overflow-hidden">
-        {/* Left Column: Wing Summary, Table, Metrics */}
-        <div className="flex-grow flex-1 flex flex-col gap-1 min-h-0 w-full lg:w-0 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent pr-1.5">
+        {/* Left Column: Property Details, Verification Badges, Wing Summary, Table, Metrics */}
+        <div className="flex-grow flex-1 flex flex-col gap-1.5 min-h-0 w-full lg:w-0 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent pr-1.5">
+          {/* Header Property Details Card */}
+          <PropertyDetailsCard />
+
           {/* Verification Badges Row - same width as Wing Summary */}
           <VerificationBadges />
 

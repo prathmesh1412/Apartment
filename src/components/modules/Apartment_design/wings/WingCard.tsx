@@ -4,7 +4,8 @@ import {
   Briefcase,
   ShieldCheck,
   TrendingUp,
-  Building2
+  Building2,
+  Pencil
 } from 'lucide-react';
 import { WingDetails } from '@/components/modules/Apartment_design/shared/mockData';
 
@@ -121,6 +122,20 @@ export default function WingCard({
               <span className="bg-[#facc15] text-[#422006] text-[9.5px] font-black px-1.5 py-0.25 rounded flex items-center gap-0.5 leading-none">
                 ★ {getRating(wing.id)}
               </span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (typeof window !== 'undefined') {
+                    window.dispatchEvent(new CustomEvent('openQuickDataEntry', { detail: { wing } }));
+                  }
+                }}
+                className="w-5 h-5 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#002fbe] flex items-center justify-center transition-all cursor-pointer border border-white/30 shadow-2xs ml-0.5"
+                title="Edit Wing Quick Data Entry"
+                aria-label="Edit Wing Quick Data Entry"
+              >
+                <Pencil size={10} className="stroke-[2.5]" />
+              </button>
             </div>
             <span className="text-[9.5px] text-slate-300 font-semibold leading-tight block mt-0.5">{wing.name}</span>
           </div>
