@@ -238,10 +238,33 @@ export default function PropertyDetailsCard({
                   {data.societyName}
                 </span>
               </div>
+
+              {/* Valuation Method Selector Tabs - Right Side Header Pill */}
+              <div className="bg-blue-50/70 p-0.5 rounded-full border border-blue-200/80 flex items-center gap-0.5 shrink-0 shadow-2xs">
+                <button
+                  type="button"
+                  className="px-2 py-0.5 text-[9.5px] font-black rounded-full bg-[#002fbe] text-white shadow-2xs transition-all cursor-pointer"
+                >
+                  Rateable Value (RV)
+                </button>
+                <button
+                  type="button"
+                  className="px-2 py-0.5 text-[9.5px] font-bold rounded-full text-blue-700 hover:bg-blue-100/60 transition-all cursor-pointer"
+                >
+                  Capital Value Method (CVM)
+                </button>
+                <button
+                  type="button"
+                  className="px-2 py-0.5 text-[9.5px] font-bold rounded-full text-blue-700 hover:bg-blue-100/60 transition-all cursor-pointer"
+                >
+                  Dual Method View (RV + CVM)
+                </button>
+              </div>
+
               <button
                 type="button"
                 onClick={() => setIsQuickDataEntryOpen(true)}
-                className="p-0.5 hover:bg-blue-50 rounded-md text-blue-600 transition-colors cursor-pointer shrink-0"
+                className="p-0.5 hover:bg-blue-50 rounded-md text-blue-600 transition-colors cursor-pointer shrink-0 ml-0.5"
                 title="Edit Property Details"
                 aria-label="Edit Property Details"
               >

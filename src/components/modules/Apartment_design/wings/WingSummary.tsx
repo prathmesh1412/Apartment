@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChevronRight, Cpu, Building, Percent, History, FileCheck, ShieldCheck, Award, FileText, Pencil } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronRight, Cpu, Building, Percent, History, FileCheck, ShieldCheck, Award, FileText, Pencil, TrendingUp, Layers } from 'lucide-react';
 import WingCard from './WingCard';
 import { WingDetails } from '@/components/modules/Apartment_design/shared/mockData';
 
@@ -26,6 +26,7 @@ export default function WingSummary({
 }: WingSummaryProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const [selectedSectionTab, setSelectedSectionTab] = React.useState<'wing' | 'building' | 'discount' | 'old'>('wing');
+  const [activeValuationMethod, setActiveValuationMethod] = useState<'rv' | 'cvm' | 'dual'>('rv');
   const cardsScrollRef = React.useRef<HTMLDivElement>(null);
 
   const scrollNext = () => {
@@ -42,75 +43,120 @@ export default function WingSummary({
 
   return (
     <div ref={summaryRef} className="bg-white border border-gray-200 rounded-xl p-3 shadow-xs relative shrink-0 transition-all duration-300">
-      {/* Primary Navigation Tabs Row (Matching Image 2) */}
-      <div className="flex items-center gap-1.5 border-b border-[#002fbe] mb-2 px-0.5 overflow-x-auto no-scrollbar select-none">
-        {/* Tab 1: Wing Intelligence */}
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedSectionTab('wing');
-            setIsCollapsed(false);
-          }}
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-black rounded-t-lg transition-all cursor-pointer ${
-            selectedSectionTab === 'wing'
-              ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
-              : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
-          }`}
-        >
-          <Cpu size={13} />
-          <span>Wing Intelligence</span>
-        </button>
+      {/* Primary Navigation Tabs Row with Right-Aligned Valuation Method Switcher */}
+      <div className="flex items-center justify-between border-b border-[#002fbe] mb-2 px-0.5 overflow-x-auto no-scrollbar select-none gap-2">
+        {/* Left Navigation Tabs */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          {/* Tab 1: Wing Intelligence */}
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSectionTab('wing');
+              setIsCollapsed(false);
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-black rounded-t-lg transition-all cursor-pointer ${
+              selectedSectionTab === 'wing'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <Cpu size={13} />
+            <span>Wing Intelligence</span>
+          </button>
 
-        {/* Tab 2: Building Permission */}
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedSectionTab('building');
-            setIsCollapsed(false);
-          }}
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
-            selectedSectionTab === 'building'
-              ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
-              : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
-          }`}
-        >
-          <Building size={13} />
-          <span>Building Permission</span>
-        </button>
+          {/* Tab 2: Building Permission */}
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSectionTab('building');
+              setIsCollapsed(false);
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
+              selectedSectionTab === 'building'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <Building size={13} />
+            <span>Building Permission</span>
+          </button>
 
-        {/* Tab 3: Discount & Social Data */}
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedSectionTab('discount');
-            setIsCollapsed(false);
-          }}
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
-            selectedSectionTab === 'discount'
-              ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
-              : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
-          }`}
-        >
-          <Percent size={13} />
-          <span>Discount & Social Data</span>
-        </button>
+          {/* Tab 3: Discount & Social Data */}
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSectionTab('discount');
+              setIsCollapsed(false);
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
+              selectedSectionTab === 'discount'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <Percent size={13} />
+            <span>Discount & Social Data</span>
+          </button>
 
-        {/* Tab 4: Old Details */}
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedSectionTab('old');
-            setIsCollapsed(false);
-          }}
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
-            selectedSectionTab === 'old'
-              ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
-              : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
-          }`}
-        >
-          <History size={13} />
-          <span>Old Details</span>
-        </button>
+          {/* Tab 4: Old Details */}
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSectionTab('old');
+              setIsCollapsed(false);
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
+              selectedSectionTab === 'old'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <History size={13} />
+            <span>Old Details</span>
+          </button>
+        </div>
+
+        {/* Right Side: Valuation Method Selector Tabs (RV, CVM, Dual Method) */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <button
+            type="button"
+            onClick={() => setActiveValuationMethod('rv')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-black rounded-t-lg transition-all cursor-pointer ${
+              activeValuationMethod === 'rv'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <FileText size={13} />
+            <span>Rateable Value (RV)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveValuationMethod('cvm')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
+              activeValuationMethod === 'cvm'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <TrendingUp size={13} />
+            <span>Capital Value Method (CVM)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveValuationMethod('dual')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-extrabold rounded-t-lg transition-all cursor-pointer ${
+              activeValuationMethod === 'dual'
+                ? 'bg-white text-[#002fbe] border-2 border-b-0 border-[#002fbe] shadow-2xs -mb-[1px] z-10'
+                : 'bg-[#002fbe] text-white hover:bg-[#0028a3]'
+            }`}
+          >
+            <Layers size={13} />
+            <span>Dual Method View (RV + CVM)</span>
+          </button>
+        </div>
       </div>
 
       {/* Tab 1 Content: Wing Intelligence */}
