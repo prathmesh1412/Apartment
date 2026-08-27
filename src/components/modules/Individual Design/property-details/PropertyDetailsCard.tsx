@@ -181,10 +181,10 @@ export default function PropertyDetailsCard({
         {/* 2. Middle Info Block */}
         <div className="flex-1 flex flex-col justify-start min-w-0 gap-1">
 
-          {/* Header Row: Property No., UPIC ID, and Society Name formatted IN-LINE */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 pb-1 border-b border-slate-200/40">
-            {/* 1. Property No. */}
-            <div className="shrink-0 flex items-center gap-1.5">
+          {/* Header Row: Property No., UPIC ID, and Owner Name all formatted strictly IN-LINE */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 pb-1.5 border-b border-slate-200/50">
+            {/* 1. Property No. (Inline) */}
+            <div className="shrink-0 flex items-center gap-2">
               <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide flex items-center gap-1 shrink-0">
                 <Hash size={11} className="text-slate-400 shrink-0" />
                 Property No.:
@@ -195,7 +195,7 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 2. UPIC ID */}
-            <div className="shrink-0 flex items-center gap-1.5">
+            <div className="shrink-0 flex items-center gap-2">
               <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide flex items-center gap-1 shrink-0">
                 <Hash size={11} className="text-blue-500 shrink-0" />
                 UPIC ID:
@@ -205,7 +205,7 @@ export default function PropertyDetailsCard({
               </span>
               <button
                 onClick={handleCopy}
-                className="p-1 hover:bg-slate-100 rounded text-blue-600 transition-colors cursor-pointer relative"
+                className="p-1 hover:bg-slate-100 rounded text-blue-600 transition-colors cursor-pointer relative ml-0.5"
                 title="Copy Property ID"
                 aria-label="Copy UPIC Number"
               >
@@ -219,8 +219,8 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 3. Owner Name */}
-            <div className="flex-1 min-w-0 flex items-center justify-between gap-1.5">
-              <div className="flex items-center gap-1.5 min-w-0">
+            <div className="flex-1 min-w-0 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 min-w-0">
                 <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide flex items-center gap-1 shrink-0">
                   <User size={11} className="text-slate-400 shrink-0" />
                   Owner Name:
@@ -242,10 +242,10 @@ export default function PropertyDetailsCard({
           </div>
 
           {/* 3-Column Specifications Grid - New Property Details Screen Fields */}
-          <div className="flex flex-col md:flex-row gap-2.5 text-[10.5px]">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 text-[10.5px] pt-1">
 
             {/* Column 1: Ownership & Occupiers (6 Fields - Reduced Width) */}
-            <div className="flex-[0.85] min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 pr-1.5">
+            <div className="flex-[0.85] min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/60 pr-3 md:pr-4">
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
                 <span className="font-bold text-[#475569] w-[108px] shrink-0 flex items-center gap-1">
                   <UserCheck size={11} className="text-[#3b82f6] shrink-0" />

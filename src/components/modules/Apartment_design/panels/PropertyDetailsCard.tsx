@@ -191,9 +191,9 @@ export default function PropertyDetailsCard({
         <div className="flex-1 flex flex-col justify-start min-w-0 gap-1">
 
           {/* Header Row: Property No., UPIC ID, and Society Name all formatted strictly IN-LINE */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 pb-1 border-b border-slate-200/40">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 pb-1.5 border-b border-slate-200/50">
             {/* 1. Property No. (Inline) */}
-            <div className="shrink-0 flex items-center gap-1.5">
+            <div className="shrink-0 flex items-center gap-2">
               <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide flex items-center gap-1 shrink-0">
                 <Hash size={11} className="text-slate-400 shrink-0" />
                 Property No.:
@@ -204,7 +204,7 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 2. UPIC ID (Inline) */}
-            <div className="shrink-0 flex items-center gap-1.5">
+            <div className="shrink-0 flex items-center gap-2">
               <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide flex items-center gap-1 shrink-0">
                 <Hash size={11} className="text-blue-500 shrink-0" />
                 UPIC ID:
@@ -214,7 +214,7 @@ export default function PropertyDetailsCard({
               </span>
               <button
                 onClick={handleCopy}
-                className="p-1 hover:bg-slate-100 rounded text-blue-600 transition-colors cursor-pointer relative"
+                className="p-1 hover:bg-slate-100 rounded text-blue-600 transition-colors cursor-pointer relative ml-0.5"
                 title="Copy Property ID"
                 aria-label="Copy UPIC Number"
               >
@@ -228,37 +228,15 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 3. Society Name (Inline & Expands) */}
-            <div className="flex-1 min-w-0 flex items-center justify-between gap-1.5">
-              <div className="flex items-center gap-1.5 min-w-0">
+            <div className="flex-1 min-w-0 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 min-w-0">
                 <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide flex items-center gap-1 shrink-0">
                   <Building2 size={11} className="text-slate-400 shrink-0" />
-                  Society Name:
+                  Owner Name:
                 </span>
                 <span className="font-black text-[#ef4444] text-[12.5px] tracking-tight truncate" title={data.societyName}>
                   {data.societyName}
                 </span>
-              </div>
-
-              {/* Valuation Method Selector Tabs - Right Side Header Pill */}
-              <div className="bg-blue-50/70 p-0.5 rounded-full border border-blue-200/80 flex items-center gap-0.5 shrink-0 shadow-2xs">
-                <button
-                  type="button"
-                  className="px-2 py-0.5 text-[9.5px] font-black rounded-full bg-[#002fbe] text-white shadow-2xs transition-all cursor-pointer"
-                >
-                  Rateable Value (RV)
-                </button>
-                <button
-                  type="button"
-                  className="px-2 py-0.5 text-[9.5px] font-bold rounded-full text-blue-700 hover:bg-blue-100/60 transition-all cursor-pointer"
-                >
-                  Capital Value Method (CVM)
-                </button>
-                <button
-                  type="button"
-                  className="px-2 py-0.5 text-[9.5px] font-bold rounded-full text-blue-700 hover:bg-blue-100/60 transition-all cursor-pointer"
-                >
-                  Dual Method View (RV + CVM)
-                </button>
               </div>
 
               <button
@@ -274,47 +252,47 @@ export default function PropertyDetailsCard({
           </div>
 
           {/* 3-Column Specifications Grid - Apartment Property Fields */}
-          <div className="flex flex-col md:flex-row gap-2.5 text-[10.5px]">
+          <div className="flex flex-col md:flex-row gap-4 text-[10.5px] pt-1">
             
             {/* Column 1: Location & Property Info (6 Fields - Reduced Width) */}
-            <div className="flex-[0.7] min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 pr-1.5">
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+            <div className="flex-[0.7] min-w-0 space-y-2 border-r-0 md:border-r border-slate-200/50 pr-3">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
                   <MapPin size={11} className="text-[#2563eb] shrink-0" />
                   Division
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.division}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
                   <Landmark size={11} className="text-[#2563eb] shrink-0" />
                   Ward No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.wardNo}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
                   <Tag size={11} className="text-[#2563eb] shrink-0" />
                   Category
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.category}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
                   <Map size={11} className="text-[#2563eb] shrink-0" />
                   Tax Zone & Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.taxZone}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
                   <Compass size={11} className="text-[#2563eb] shrink-0" />
                   Sub Zone & CSN No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.subZoneCsn}>{data.subZoneCsn}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
                   <Grid size={11} className="text-[#2563eb] shrink-0" />
                   Plot No.
                 </span>
@@ -323,90 +301,90 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* Column 2: Ownership & Contact Details (6 Fields - Increased Width) */}
-            <div className="flex-[1.15] min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 px-0 md:px-1.5">
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+            <div className="flex-[1.15] min-w-0 space-y-2 border-r-0 md:border-r border-slate-200/50 px-0 md:px-3">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <UserCheck size={11} className="text-[#2563eb] shrink-0" />
                   Land Owner Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.landOwnerName}>{data.landOwnerName}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <HardHat size={11} className="text-[#2563eb] shrink-0" />
                   Builder Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.builderName}>{data.builderName}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <Mail size={11} className="text-[#2563eb] shrink-0" />
                   Society Email
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.societyEmail}>{data.societyEmail}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <UserCheck size={11} className="text-[#2563eb] shrink-0" />
                   Secretary Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.secretaryName}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <Phone size={11} className="text-[#2563eb] shrink-0" />
                   Secretary Mobile No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.secretaryMobile}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <AtSign size={11} className="text-[#2563eb] shrink-0" />
                   Secretary Email ID
                 </span>
-                <span className="font-black text-[#2563eb] truncate" title={data.secretaryEmail}>{data.secretaryEmail}</span>
+                <span className="font-black text-[#2563eb] truncate" title={data.societyEmail}>{data.secretaryEmail}</span>
               </div>
             </div>
 
             {/* Column 3: Area Metrics & Building Info (6 Fields - Increased Width) */}
-            <div className="flex-[1.15] min-w-0 space-y-1.5 pl-0 md:pl-1.5">
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-start">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+            <div className="flex-[1.15] min-w-0 space-y-2 pl-0 md:pl-3">
+              <div className="flex justify-between md:justify-start md:gap-4 items-start">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <Home size={11} className="text-[#2563eb] shrink-0 mt-0.5" />
                   Society Address
                 </span>
                 <span className="font-black text-[#2563eb] leading-tight truncate" title={data.societyAddress}>{data.societyAddress}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <Ruler size={11} className="text-[#2563eb] shrink-0" />
                   Plot Area
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.plotArea}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <Maximize size={11} className="text-[#2563eb] shrink-0" />
                   Carpet / Built-up Area
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.carpetBuiltUpArea}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <History size={11} className="text-[#2563eb] shrink-0" />
                   Old Carpet / Built-up
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.oldCarpetBuiltUpArea}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <Layers size={11} className="text-[#2563eb] shrink-0" />
                   Total Floors
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.totalFloors}</span>
               </div>
-              <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+              <div className="flex justify-between md:justify-start md:gap-4 items-center">
+                <span className="font-extrabold text-slate-600 w-[130px] shrink-0 flex items-center gap-1">
                   <PieChart size={11} className="text-[#2563eb] shrink-0" />
                   Total Properties (Res/Comm/Amen)
                 </span>
@@ -540,9 +518,9 @@ export default function PropertyDetailsCard({
               </div>
             </div>
 
-        </div>
+          </div>
 
-      </div>
+        </div>
 
       </div>
 
