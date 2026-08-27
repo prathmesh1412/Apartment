@@ -19,14 +19,22 @@ interface QuickDataEntryDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   propertyData?: any;
+  initialTab?: 'property' | 'kyc' | 'society' | 'building' | 'discount' | 'floor' | 'olddetails';
 }
 
 export default function QuickDataEntryDrawer({
   isOpen,
   onClose,
-  propertyData
+  propertyData,
+  initialTab
 }: QuickDataEntryDrawerProps) {
-  const [activeTab, setActiveTab] = useState<'property' | 'kyc' | 'society' | 'building' | 'discount' | 'floor' | 'olddetails'>('property');
+  const [activeTab, setActiveTab] = useState<'property' | 'kyc' | 'society' | 'building' | 'discount' | 'floor' | 'olddetails'>(initialTab || 'property');
+
+  React.useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
   const [isUpdating, setIsUpdating] = useState(false);
   const [showToast, setShowToast] = useState(false);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Cpu, Building, Percent, History, FileCheck, ShieldCheck, Award, FileText } from 'lucide-react';
+import { ChevronRight, Cpu, Building, Percent, History, FileCheck, ShieldCheck, Award, FileText, Pencil } from 'lucide-react';
 import WingCard from './WingCard';
 import { WingDetails } from '@/components/modules/Apartment_design/shared/mockData';
 
@@ -31,6 +31,12 @@ export default function WingSummary({
   const scrollNext = () => {
     if (cardsScrollRef.current) {
       cardsScrollRef.current.scrollBy({ left: 450, behavior: 'smooth' });
+    }
+  };
+
+  const handleOpenDrawer = (drawerTab: string) => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('openQuickDataEntry', { detail: { activeTab: drawerTab } }));
     }
   };
 
@@ -200,30 +206,82 @@ export default function WingSummary({
           <div className="flex items-center justify-between border-b border-blue-200/60 pb-1.5">
             <div className="flex items-center gap-2">
               <Building size={16} className="text-[#002fbe]" />
-              <h4 className="font-black text-[#1e2b58] text-[12px] uppercase tracking-wide">Building Permission & BPMS Verification</h4>
+              <h4 className="font-black text-[#1e2b58] text-[12px] uppercase tracking-wide">Building Permission & BPMS Records</h4>
             </div>
             <span className="bg-emerald-100 text-emerald-800 font-extrabold text-[9px] px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
               <ShieldCheck size={11} /> Approved & Verified
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2.5 text-[10.5px]">
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Permit Number</span>
-              <span className="font-black text-slate-900 text-[11.5px]">BPMS-2024-00981</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Sanction Date</span>
-              <span className="font-black text-slate-900 text-[11.5px]">14 Jan 2024</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Approved Floors</span>
-              <span className="font-black text-blue-700 text-[11.5px]">Ground + 7 Floors</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Total Sanctioned Area</span>
-              <span className="font-black text-emerald-700 text-[11.5px]">34,500.00 sq.ft</span>
-            </div>
+          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-2xs">
+            <table className="w-full text-left text-[11px] border-collapse">
+              <thead>
+                <tr className="bg-slate-100/80 text-slate-700 font-extrabold text-[10px] uppercase border-b border-slate-200">
+                  <th className="py-2 px-3">Permit No / Plan</th>
+                  <th className="py-2 px-3">Sanction Date</th>
+                  <th className="py-2 px-3">Approved Floors</th>
+                  <th className="py-2 px-3">Sanctioned Area</th>
+                  <th className="py-2 px-3 text-center">Status</th>
+                  <th className="py-2 px-3 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-bold text-slate-800">
+                <tr className="hover:bg-blue-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-blue-700">BPMS-2024-00981</td>
+                  <td className="py-2 px-3">14 Jan 2024</td>
+                  <td className="py-2 px-3">Ground + 7 Floors</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">34,500.00 sq.ft</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-emerald-50 text-emerald-700 text-[9.5px] px-2 py-0.5 rounded-full border border-emerald-200">Sanctioned</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('building')}
+                      className="p-1 hover:bg-blue-100 rounded-md text-blue-600 transition cursor-pointer"
+                      title="Edit Building Permission"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-blue-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-blue-700">BPMS-2021-00432</td>
+                  <td className="py-2 px-3">08 Mar 2021</td>
+                  <td className="py-2 px-3">Ground + 4 Floors</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">22,100.00 sq.ft</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-blue-50 text-blue-700 text-[9.5px] px-2 py-0.5 rounded-full border border-blue-200">Revised</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('building')}
+                      className="p-1 hover:bg-blue-100 rounded-md text-blue-600 transition cursor-pointer"
+                      title="Edit Building Permission"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-blue-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-blue-700">CC-2019-00105</td>
+                  <td className="py-2 px-3">20 Nov 2019</td>
+                  <td className="py-2 px-3">Plinth Level CC</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">18,500.00 sq.ft</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-slate-100 text-slate-700 text-[9.5px] px-2 py-0.5 rounded-full border border-slate-300">Commenced</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('building')}
+                      className="p-1 hover:bg-blue-100 rounded-md text-blue-600 transition cursor-pointer"
+                      title="Edit Building Permission"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       )}
@@ -241,28 +299,75 @@ export default function WingSummary({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[10.5px]">
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs flex items-center justify-between">
-              <div>
-                <span className="text-gray-500 font-bold block text-[9px] uppercase">Solar Energy Rebate</span>
-                <span className="font-black text-emerald-700 text-[11.5px]">5% Annual Tax Discount</span>
-              </div>
-              <span className="bg-emerald-50 text-emerald-700 text-[9px] font-black px-1.5 py-0.5 rounded border border-emerald-200">Active</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs flex items-center justify-between">
-              <div>
-                <span className="text-gray-500 font-bold block text-[9px] uppercase">Senior Citizen Concession</span>
-                <span className="font-black text-blue-700 text-[11.5px]">10% Exemption</span>
-              </div>
-              <span className="bg-blue-50 text-blue-700 text-[9px] font-black px-1.5 py-0.5 rounded border border-blue-200">Applied</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs flex items-center justify-between">
-              <div>
-                <span className="text-gray-500 font-bold block text-[9px] uppercase">Rainwater Harvesting</span>
-                <span className="font-black text-emerald-700 text-[11.5px]">3% General Tax Rebate</span>
-              </div>
-              <span className="bg-emerald-50 text-emerald-700 text-[9px] font-black px-1.5 py-0.5 rounded border border-emerald-200">Active</span>
-            </div>
+          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-2xs">
+            <table className="w-full text-left text-[11px] border-collapse">
+              <thead>
+                <tr className="bg-slate-100/80 text-slate-700 font-extrabold text-[10px] uppercase border-b border-slate-200">
+                  <th className="py-2 px-3">Incentive / Scheme</th>
+                  <th className="py-2 px-3">Category</th>
+                  <th className="py-2 px-3">Concession Rate</th>
+                  <th className="py-2 px-3">Applicable Period</th>
+                  <th className="py-2 px-3 text-center">Status</th>
+                  <th className="py-2 px-3 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-bold text-slate-800">
+                <tr className="hover:bg-emerald-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-emerald-700">Solar Energy Rebate</td>
+                  <td className="py-2 px-3">Green Building</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">5% Annual Discount</td>
+                  <td className="py-2 px-3">2024 - 2026</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-emerald-50 text-emerald-700 text-[9.5px] px-2 py-0.5 rounded-full border border-emerald-200">Active</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('discount')}
+                      className="p-1 hover:bg-emerald-100 rounded-md text-emerald-600 transition cursor-pointer"
+                      title="Edit Discount & Social Data"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-emerald-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-blue-700">Senior Citizen Concession</td>
+                  <td className="py-2 px-3">Social Category</td>
+                  <td className="py-2 px-3 text-blue-700 font-extrabold">10% Tax Exemption</td>
+                  <td className="py-2 px-3">Lifetime</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-blue-50 text-blue-700 text-[9.5px] px-2 py-0.5 rounded-full border border-blue-200">Applied</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('discount')}
+                      className="p-1 hover:bg-emerald-100 rounded-md text-emerald-600 transition cursor-pointer"
+                      title="Edit Discount & Social Data"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-emerald-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-emerald-700">Rainwater Harvesting</td>
+                  <td className="py-2 px-3">Eco Infrastructure</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">3% General Rebate</td>
+                  <td className="py-2 px-3">2023 - 2025</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-emerald-50 text-emerald-700 text-[9.5px] px-2 py-0.5 rounded-full border border-emerald-200">Active</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('discount')}
+                      className="p-1 hover:bg-emerald-100 rounded-md text-emerald-600 transition cursor-pointer"
+                      title="Edit Discount & Social Data"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       )}
@@ -280,23 +385,75 @@ export default function WingSummary({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2.5 text-[10.5px]">
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Old Rateable Value (RV)</span>
-              <span className="font-black text-slate-900 text-[11.5px]">₹16,20,000</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Previous Annual Tax</span>
-              <span className="font-black text-slate-900 text-[11.5px]">₹16,500</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Last Assessment Year</span>
-              <span className="font-black text-blue-700 text-[11.5px]">2019 - 2020</span>
-            </div>
-            <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-2xs">
-              <span className="text-gray-500 font-bold block text-[9px] uppercase">Legacy Owner Record</span>
-              <span className="font-black text-amber-700 text-[11.5px]">MATOSHREE BUILDERS</span>
-            </div>
+          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-2xs">
+            <table className="w-full text-left text-[11px] border-collapse">
+              <thead>
+                <tr className="bg-slate-100/80 text-slate-700 font-extrabold text-[10px] uppercase border-b border-slate-200">
+                  <th className="py-2 px-3">Assessment Year</th>
+                  <th className="py-2 px-3">Old Rateable Value (RV)</th>
+                  <th className="py-2 px-3">Annual Tax</th>
+                  <th className="py-2 px-3">Legacy Owner</th>
+                  <th className="py-2 px-3 text-center">Status</th>
+                  <th className="py-2 px-3 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-bold text-slate-800">
+                <tr className="hover:bg-amber-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-amber-800">2022 - 2023</td>
+                  <td className="py-2 px-3 font-extrabold text-slate-900">₹16,20,000</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">₹18,500</td>
+                  <td className="py-2 px-3">MATOSHREE BUILDERS</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-emerald-50 text-emerald-700 text-[9.5px] px-2 py-0.5 rounded-full border border-emerald-200">Paid</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('olddetails')}
+                      className="p-1 hover:bg-amber-100 rounded-md text-amber-700 transition cursor-pointer"
+                      title="Edit Old Details"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-amber-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-amber-800">2021 - 2022</td>
+                  <td className="py-2 px-3 font-extrabold text-slate-900">₹14,50,000</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">₹16,200</td>
+                  <td className="py-2 px-3">MATOSHREE BUILDERS</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-emerald-50 text-emerald-700 text-[9.5px] px-2 py-0.5 rounded-full border border-emerald-200">Paid</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('olddetails')}
+                      className="p-1 hover:bg-amber-100 rounded-md text-amber-700 transition cursor-pointer"
+                      title="Edit Old Details"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-amber-50/30 transition-colors">
+                  <td className="py-2 px-3 font-extrabold text-amber-800">2020 - 2021</td>
+                  <td className="py-2 px-3 font-extrabold text-slate-900">₹12,80,000</td>
+                  <td className="py-2 px-3 text-emerald-700 font-extrabold">₹14,800</td>
+                  <td className="py-2 px-3">MATOSHREE BUILDERS</td>
+                  <td className="py-2 px-3 text-center">
+                    <span className="bg-slate-100 text-slate-700 text-[9.5px] px-2 py-0.5 rounded-full border border-slate-300">Archived</span>
+                  </td>
+                  <td className="py-2 px-3 text-center">
+                    <button
+                      onClick={() => handleOpenDrawer('olddetails')}
+                      className="p-1 hover:bg-amber-100 rounded-md text-amber-700 transition cursor-pointer"
+                      title="Edit Old Details"
+                    >
+                      <Pencil size={13} />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       )}

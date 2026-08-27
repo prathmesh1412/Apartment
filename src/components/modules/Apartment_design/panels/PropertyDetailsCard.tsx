@@ -144,8 +144,16 @@ export default function PropertyDetailsCard({
   const [copied, setCopied] = useState(false);
   const [isQuickDataEntryOpen, setIsQuickDataEntryOpen] = useState(false);
 
+  const [initialDrawerTab, setInitialDrawerTab] = useState<string | undefined>(undefined);
+
   React.useEffect(() => {
-    const handleOpen = () => setIsQuickDataEntryOpen(true);
+    const handleOpen = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail && customEvent.detail.activeTab) {
+        setInitialDrawerTab(customEvent.detail.activeTab);
+      }
+      setIsQuickDataEntryOpen(true);
+    };
     if (typeof window !== 'undefined') {
       window.addEventListener('openQuickDataEntry', handleOpen);
       return () => window.removeEventListener('openQuickDataEntry', handleOpen);
@@ -243,140 +251,140 @@ export default function PropertyDetailsCard({
           </div>
 
           {/* 3-Column Specifications Grid - Apartment Property Fields */}
-          <div className="flex flex-col md:flex-row gap-2.5 text-[10px]">
+          <div className="flex flex-col md:flex-row gap-2.5 text-[10.5px]">
             
-            {/* Column 1: Location & Property Info (6 Fields) */}
-            <div className="flex-1 min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 pr-2">
+            {/* Column 1: Location & Property Info (6 Fields - Reduced Width) */}
+            <div className="flex-[0.7] min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 pr-1.5">
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[110px] shrink-0 flex items-center gap-1">
-                  <MapPin size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+                  <MapPin size={11} className="text-[#2563eb] shrink-0" />
                   Division
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.division}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[110px] shrink-0 flex items-center gap-1">
-                  <Landmark size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+                  <Landmark size={11} className="text-[#2563eb] shrink-0" />
                   Ward No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.wardNo}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[110px] shrink-0 flex items-center gap-1">
-                  <Tag size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+                  <Tag size={11} className="text-[#2563eb] shrink-0" />
                   Category
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.category}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[110px] shrink-0 flex items-center gap-1">
-                  <Map size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+                  <Map size={11} className="text-[#2563eb] shrink-0" />
                   Tax Zone & Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.taxZone}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[110px] shrink-0 flex items-center gap-1">
-                  <Compass size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+                  <Compass size={11} className="text-[#2563eb] shrink-0" />
                   Sub Zone & CSN No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.subZoneCsn}>{data.subZoneCsn}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[110px] shrink-0 flex items-center gap-1">
-                  <Grid size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[105px] shrink-0 flex items-center gap-1">
+                  <Grid size={11} className="text-[#2563eb] shrink-0" />
                   Plot No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.plotNo}</span>
               </div>
             </div>
 
-            {/* Column 2: Ownership & Contact Details (6 Fields) */}
-            <div className="flex-1 min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 px-0 md:px-1.5">
+            {/* Column 2: Ownership & Contact Details (6 Fields - Increased Width) */}
+            <div className="flex-[1.15] min-w-0 space-y-1.5 border-r-0 md:border-r border-slate-200/50 px-0 md:px-1.5">
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[120px] shrink-0 flex items-center gap-1">
-                  <UserCheck size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <UserCheck size={11} className="text-[#2563eb] shrink-0" />
                   Land Owner Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.landOwnerName}>{data.landOwnerName}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[120px] shrink-0 flex items-center gap-1">
-                  <HardHat size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <HardHat size={11} className="text-[#2563eb] shrink-0" />
                   Builder Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.builderName}>{data.builderName}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[120px] shrink-0 flex items-center gap-1">
-                  <Mail size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <Mail size={11} className="text-[#2563eb] shrink-0" />
                   Society Email
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.societyEmail}>{data.societyEmail}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[120px] shrink-0 flex items-center gap-1">
-                  <UserCheck size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <UserCheck size={11} className="text-[#2563eb] shrink-0" />
                   Secretary Name
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.secretaryName}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[120px] shrink-0 flex items-center gap-1">
-                  <Phone size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <Phone size={11} className="text-[#2563eb] shrink-0" />
                   Secretary Mobile No.
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.secretaryMobile}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[120px] shrink-0 flex items-center gap-1">
-                  <AtSign size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <AtSign size={11} className="text-[#2563eb] shrink-0" />
                   Secretary Email ID
                 </span>
                 <span className="font-black text-[#2563eb] truncate" title={data.secretaryEmail}>{data.secretaryEmail}</span>
               </div>
             </div>
 
-            {/* Column 3: Area Metrics & Building Info (6 Fields) */}
-            <div className="flex-1 min-w-0 space-y-1.5 pl-0 md:pl-1.5">
+            {/* Column 3: Area Metrics & Building Info (6 Fields - Increased Width) */}
+            <div className="flex-[1.15] min-w-0 space-y-1.5 pl-0 md:pl-1.5">
               <div className="flex justify-between md:justify-start md:gap-1.5 items-start">
-                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
-                  <Home size={10.5} className="text-[#2563eb] shrink-0 mt-0.5" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <Home size={11} className="text-[#2563eb] shrink-0 mt-0.5" />
                   Society Address
                 </span>
                 <span className="font-black text-[#2563eb] leading-tight truncate" title={data.societyAddress}>{data.societyAddress}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
-                  <Ruler size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <Ruler size={11} className="text-[#2563eb] shrink-0" />
                   Plot Area
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.plotArea}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
-                  <Maximize size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <Maximize size={11} className="text-[#2563eb] shrink-0" />
                   Carpet / Built-up Area
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.carpetBuiltUpArea}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
-                  <History size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <History size={11} className="text-[#2563eb] shrink-0" />
                   Old Carpet / Built-up
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.oldCarpetBuiltUpArea}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
-                  <Layers size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <Layers size={11} className="text-[#2563eb] shrink-0" />
                   Total Floors
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.totalFloors}</span>
               </div>
               <div className="flex justify-between md:justify-start md:gap-1.5 items-center">
-                <span className="font-extrabold text-slate-600 w-[115px] shrink-0 flex items-center gap-1">
-                  <PieChart size={10.5} className="text-[#2563eb] shrink-0" />
+                <span className="font-extrabold text-slate-600 w-[125px] shrink-0 flex items-center gap-1">
+                  <PieChart size={11} className="text-[#2563eb] shrink-0" />
                   Total Properties (Res/Comm/Amen)
                 </span>
                 <span className="font-black text-[#2563eb] truncate">{data.totalPropertiesBreakdown}</span>
@@ -394,37 +402,37 @@ export default function PropertyDetailsCard({
           <div className="flex items-center justify-between border-b border-blue-100/80 pb-1">
             <div className="text-[9.5px] font-black text-slate-900 uppercase tracking-wide flex items-center gap-1">
               <TrendingUp size={11} className="text-slate-900" />
-              ADDITIONAL REVENUE GENERATED
+              ADD. REVENUE
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider">
+              <span className="text-[8.5px] font-black text-slate-900 uppercase tracking-wider">
                 Desc:
               </span>
-              <span className="text-[9.5px] font-black text-[#dc2626] bg-red-50 border border-red-200 px-1.5 py-0.25 rounded shadow-2xs">
+              <span className="text-[11px] font-black text-red-600 bg-red-50 border border-red-300 px-1.5 py-0.25 rounded shadow-2xs tracking-wide">
                 {data.propertyDescription || 'निवासी'}
               </span>
             </div>
           </div>
 
           {/* Hero Revenue Row - Compact Glass Card */}
-          <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50/80 via-white to-blue-50/40 p-1.5 rounded-xl border border-blue-100 flex items-center gap-2.5 shadow-2xs hover:shadow-md transition-all duration-300 group cursor-pointer">
+          <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-blue-50/80 via-white to-blue-50/40 p-2 rounded-xl border border-blue-100 shadow-2xs hover:shadow-md transition-all duration-300 group cursor-pointer">
             {/* 3D Cyan Smiling Avatar with Borderless 3D Float & Hover Animation */}
-            <div className="w-[36px] h-[36px] shrink-0 relative flex items-center justify-center cursor-pointer group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 animate-bounce">
+            <div className="w-[44px] h-[44px] shrink-0 relative flex items-center justify-center cursor-pointer group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 animate-bounce">
               <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center">
                 <img
                   src="/cyan_smile.jpg"
                   alt="3D Cyan Smile Avatar"
-                  className="w-full h-full object-cover scale-110 select-none mix-blend-multiply"
+                  className="w-full h-full object-cover scale-150 select-none mix-blend-multiply"
                 />
               </div>
             </div>
 
-            {/* Revenue Numbers */}
-            <div className="flex-1">
+            {/* Revenue Numbers (Aligned Right) */}
+            <div className="flex-1 flex flex-col items-end text-right">
               <div className="text-[16px] font-black text-slate-900 tracking-tight leading-none group-hover:text-[#1d6bf3] transition-colors">
                 {data.additionalRevenue.amount}
               </div>
-              <div className="flex items-center gap-1 mt-0.5">
+              <div className="flex items-center justify-end gap-1 mt-0.5">
                 <span className="bg-emerald-100/90 border border-emerald-200 text-emerald-700 font-extrabold text-[9px] px-1 py-0.25 rounded-full flex items-center gap-0.5 leading-none">
                   ↑ {data.additionalRevenue.growthPercent}
                 </span>
@@ -439,10 +447,10 @@ export default function PropertyDetailsCard({
           <div className="grid grid-cols-3 gap-1">
 
             {/* 1. Current Tax */}
-            <div className="bg-blue-50/50 hover:bg-blue-100/80 border border-blue-100 hover:border-blue-300 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
+            <div className="bg-blue-50/50 hover:bg-blue-100/80 border-2 border-blue-400 hover:border-blue-600 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
               <div className="flex items-center gap-1">
                 <BarChart3 size={11} className="text-blue-500 group-hover/card:scale-110 transition-transform shrink-0" />
-                <span className="text-[8px] font-bold text-slate-500 truncate" title="Current Tax">Current Tax</span>
+                <span className="text-[8px] font-bold text-blue-600 truncate" title="Current Tax">Current Tax</span>
               </div>
               <div className="text-[11.5px] font-black text-slate-900 mt-0.5 group-hover/card:text-blue-700 transition-colors">
                 {data.metrics.totalTax}
@@ -450,10 +458,10 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 2. Retrospective Tax */}
-            <div className="bg-blue-50/50 hover:bg-blue-100/80 border border-blue-100 hover:border-blue-300 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
+            <div className="bg-blue-50/50 hover:bg-blue-100/80 border-2 border-blue-400 hover:border-blue-600 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
               <div className="flex items-center gap-1">
                 <FileSpreadsheet size={11} className="text-blue-500 group-hover/card:scale-110 transition-transform shrink-0" />
-                <span className="text-[8px] font-bold text-slate-500 truncate" title="Retrospective Tax">Retro Tax</span>
+                <span className="text-[8px] font-bold text-blue-600 truncate" title="Retrospective Tax">Retro Tax</span>
               </div>
               <div className="text-[11.5px] font-black text-slate-900 mt-0.5 group-hover/card:text-blue-700 transition-colors">
                 {data.metrics.retrospectiveTax}
@@ -461,10 +469,10 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 3. Total Tax */}
-            <div className="bg-blue-50/50 hover:bg-blue-100/80 border border-blue-100 hover:border-blue-300 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
+            <div className="bg-blue-50/50 hover:bg-blue-100/80 border-2 border-blue-400 hover:border-blue-600 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
               <div className="flex items-center gap-1">
                 <BarChart3 size={11} className="text-blue-600 group-hover/card:scale-110 transition-transform shrink-0" />
-                <span className="text-[8px] font-bold text-slate-500 truncate" title="Total Tax">Total Tax</span>
+                <span className="text-[8px] font-bold text-blue-600 truncate" title="Total Tax">Total Tax</span>
               </div>
               <div className="text-[11.5px] font-black text-slate-900 mt-0.5 group-hover/card:text-blue-700 transition-colors">
                 ₹1.83L
@@ -472,10 +480,10 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 4. Total Demand */}
-            <div className="bg-amber-50/60 hover:bg-amber-100/80 border border-amber-100 hover:border-amber-300 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
+            <div className="bg-amber-50/60 hover:bg-amber-100/80 border-2 border-amber-400 hover:border-amber-600 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
               <div className="flex items-center gap-1">
-                <ShieldAlert size={11} className="text-amber-500 group-hover/card:scale-110 transition-transform shrink-0" />
-                <span className="text-[8px] font-bold text-slate-500 truncate" title="Total Demand">Total Demand</span>
+                <ShieldAlert size={11} className="text-amber-600 group-hover/card:scale-110 transition-transform shrink-0" />
+                <span className="text-[8px] font-bold text-amber-700 truncate" title="Total Demand">Total Demand</span>
               </div>
               <div className="text-[11.5px] font-black text-slate-900 mt-0.5 group-hover/card:text-amber-700 transition-colors">
                 {data.metrics.totalDemand}
@@ -483,13 +491,13 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 5. Total Collection & % Combined Card */}
-            <div className="bg-emerald-50/60 hover:bg-emerald-100/80 border border-emerald-100 hover:border-emerald-300 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
+            <div className="bg-emerald-50/60 hover:bg-emerald-100/80 border-2 border-emerald-400 hover:border-emerald-600 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
               <div className="flex items-center justify-between gap-0.5">
                 <div className="flex items-center gap-1 min-w-0">
-                  <Wallet size={11} className="text-emerald-500 group-hover/card:scale-110 transition-transform shrink-0" />
-                  <span className="text-[8px] font-bold text-slate-500 truncate" title="Total Collection">Collection</span>
+                  <Wallet size={11} className="text-emerald-600 group-hover/card:scale-110 transition-transform shrink-0" />
+                  <span className="text-[8px] font-bold text-emerald-700 truncate" title="Total Collection">Collection</span>
                 </div>
-                <span className="bg-emerald-100 text-emerald-700 font-extrabold text-[8px] px-1 py-0.25 rounded-full leading-none shrink-0">
+                <span className="bg-emerald-200/80 text-emerald-800 font-extrabold text-[8px] px-1 py-0.25 rounded-full leading-none shrink-0 border border-emerald-400">
                   {data.metrics.collectionPercentage}
                 </span>
               </div>
@@ -499,10 +507,10 @@ export default function PropertyDetailsCard({
             </div>
 
             {/* 6. Total Balance */}
-            <div className="bg-rose-50/60 hover:bg-rose-100/80 border border-rose-100 hover:border-rose-300 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
+            <div className="bg-rose-50/60 hover:bg-rose-100/80 border-2 border-rose-400 hover:border-rose-600 rounded-lg p-1.5 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 cursor-pointer group/card">
               <div className="flex items-center gap-1">
-                <AlertCircle size={11} className="text-rose-500 group-hover/card:scale-110 transition-transform shrink-0" />
-                <span className="text-[8px] font-bold text-slate-500 truncate" title="Total Balance">Total Balance</span>
+                <AlertCircle size={11} className="text-rose-600 group-hover/card:scale-110 transition-transform shrink-0" />
+                <span className="text-[8px] font-bold text-rose-600 truncate" title="Total Balance">Total Balance</span>
               </div>
               <div className="text-[11.5px] font-black text-[#ef4444] mt-0.5 group-hover/card:text-rose-700 transition-colors">
                 {data.metrics.totalBalance}
@@ -520,6 +528,7 @@ export default function PropertyDetailsCard({
         isOpen={isQuickDataEntryOpen}
         onClose={() => setIsQuickDataEntryOpen(false)}
         propertyData={data}
+        initialTab={initialDrawerTab as any}
       />
     </div>
   );
